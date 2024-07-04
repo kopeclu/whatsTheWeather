@@ -1,26 +1,31 @@
-const Header = ({city, setCity}) => {
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
-/*
-  TODO:
-  -Zajistit aby se promenna city prepsala jen jednou, ne po kazde zmene
-  -Napsane reseni nefunguje (fix)
-*/
+const Header = ({city, setCity}) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const replaceSpaces = (word) => {
+    return word.replace(' ', '-');
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCity(e.target.value);
-    console.log(city);
-
-    setCity('');
-    document.getElementById('cityInput').reset();
+    
+    setCity(replaceSpaces(inputValue));
+    setInputValue('');
   }
 
   return (
     <div className="header">
       <form id="cityInput" onSubmit={handleSubmit}>
-        <input type='text' placeholder='Find a city' />
+        <input
+          type='text'
+          placeholder='Find a city'
+          value={inputValue}
+          onChange={(e) => {setInputValue(e.target.value)}}/>
         <button>
-          Find
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </form>
     </div>

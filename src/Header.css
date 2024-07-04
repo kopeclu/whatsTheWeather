@@ -1,0 +1,27 @@
+.header {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header form {
+  width: fit-content;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.header input,
+.header button {
+  background-color: transparent;
+  border: none;
+  padding: 10px 14px;
+  font-size: 25px;
+}
+
+.header button {
+  cursor: pointer;
+}
+
+.header input:focus {
+  outline: none;
+}
