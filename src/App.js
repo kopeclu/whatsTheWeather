@@ -2,6 +2,7 @@ import axios from 'axios';
 import './App.css';
 import './Card.css';
 import './Header.css';
+import './Forecast.css';
 import Header from './Header';
 import { useEffect, useState } from 'react';
 import Card from './Card';
@@ -11,8 +12,8 @@ function App() {
   const [city, setCity] = useState();
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
-  const [data, setData] = useState();
-  const [current, setCurrent] = useState();
+  const [futureData, setFutureData] = useState();
+  const [currentData, setCurrentData] = useState();
   const keyAPI = process.env.REACT_APP_KEY;
 
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
@@ -37,7 +38,7 @@ function App() {
     axios.get(weatherURL)
     .then((result) => {
       console.log(result);
-      setData(result.data.list);
+      setFutureData(result.data.list);
     })
     .catch((err) => {
       console.log(err);
@@ -50,7 +51,7 @@ function App() {
     axios.get(currentURL)
     .then((result) => {
       console.log(result);
-      setCurrent(result);
+      setCurrentData(result);
     })
     .catch((err) => {
       console.log(err);
@@ -60,8 +61,8 @@ function App() {
   return (
     <div className="App">
       <Header city={city} setCity={setCity}/>
-      { data && current && 
-        <Forecast city={city} data={data} current={current} />
+      { futureData && currentData && 
+        <Forecast futureData={futureData} currentData={currentData} />
         }
       <Card />
     </div>
