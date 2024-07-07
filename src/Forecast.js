@@ -15,7 +15,7 @@ const Forecast = ({futureData, currentData}) => {
 
       <h1>Forecast:</h1>
       { futureData.map((data, index) => (
-        <ForecastFuture data={data} key={index} />
+        <ForecastFuture data={data} timezone={currentData.data.timezone} key={index} />
         ))}
 
     </div>

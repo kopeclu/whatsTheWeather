@@ -1,0 +1,45 @@
+.forecast-current {
+  background-color: aliceblue;
+  margin: 10px 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cimg {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.cweather-all-info {
+  display: flex;
+  gap: 15px;
+}
+
+.cweather-all-info span {
+  font-weight: 600;
+}
+
+.forecast-current label {
+  color: red;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#ch {
+  display: none;
+}
+
+#ch:checked ~ .cweather-see-more {
+  display: block;
+}
+
+#ch:checked ~ #see-more {
+  display: none;
+}
+
+.cweather-see-more {
+  display: none;
+}

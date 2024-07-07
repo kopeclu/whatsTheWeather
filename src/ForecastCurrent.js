@@ -1,12 +1,56 @@
+import useConvertTime from "./useConvertTime";
 import useGetUrl from "./useGetUrl";
 
 const ForecastCurrent = ({currentData}) => {
+
   return (
     <div className="forecast-current">
-      <img src={useGetUrl(currentData.data.weather[0].description)} alt="weather icon" />
-      <h3>
-        Temp: {currentData.data.main.temp}°C, Wind: {currentData.data.wind.speed}m/s, 
-      </h3>
+      <input id="ch" type="checkbox" />
+
+      <div className="cimg">
+        <img src={useGetUrl(currentData.data.weather[0].icon)} alt="weather icon" />
+        <h2>{currentData.data.weather[0].main}</h2>
+      </div>
+
+      <div className="cweather-all-info">
+
+        <div>
+         <span>Temp: </span>{currentData.data.main.temp}°C
+        </div>
+        <div>
+         <span>Wind: </span>{currentData.data.wind.speed} m/s
+        </div>
+        <div>
+         <span>Clouds: </span>{currentData.data.clouds.all} %
+        </div>
+        <div>
+         <span>Rain: </span>{currentData.data.rain === undefined ? 0 : currentData.data.rain['1h']} mm
+        </div>
+
+      </div>
+      <label id="see-more" htmlFor="ch" >See more</label>
+
+      <div className="cweather-see-more">
+        <div className="cweather-all-info">
+          <div>
+            <span>Pressure: </span>{currentData.data.main.pressure} hPa
+          </div>
+          <div>
+            <span>Humidity: </span>{currentData.data.main.humidity} %
+          </div>
+          <div>
+            <span>Sunrise: </span>{useConvertTime(currentData.data.sys.sunrise, currentData.data.timezone, false)}
+          </div>
+          <div>
+            <span>Sunset: </span>{useConvertTime(currentData.data.sys.sunset, currentData.data.timezone, false)}
+          </div>
+          <div>
+            <span>Visibility: </span>{(Number(currentData.data.visibility)/1000).toFixed(1)} km
+          </div>
+        </div>
+        <label id="see-less" htmlFor="ch" >See less</label>
+      </div>
+
     </div>
   );
 }
