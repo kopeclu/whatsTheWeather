@@ -1,21 +1,25 @@
-import useConvertTime from "./useConvertTime";
-import useGetUrl from "./useGetUrl";
+import { convertTime, getUrl } from "./functions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTemperatureHigh } from "@fortawesome/free-solid-svg-icons";
 
 const ForecastCurrent = ({currentData}) => {
+  /**
+   * nahradit text za ikonky
+   */
 
   return (
     <div className="forecast-current">
       <input id="ch" type="checkbox" />
 
       <div className="cimg">
-        <img src={useGetUrl(currentData.data.weather[0].icon)} alt="weather icon" />
+        <img src={getUrl(currentData.data.weather[0].icon)} alt="weather icon" />
         <h2>{currentData.data.weather[0].main}</h2>
       </div>
 
       <div className="cweather-all-info">
 
         <div>
-         <span>Temp: </span>{currentData.data.main.temp}°C
+        <FontAwesomeIcon icon={faTemperatureHigh} />{currentData.data.main.temp}°C
         </div>
         <div>
          <span>Wind: </span>{currentData.data.wind.speed} m/s
@@ -39,10 +43,10 @@ const ForecastCurrent = ({currentData}) => {
             <span>Humidity: </span>{currentData.data.main.humidity} %
           </div>
           <div>
-            <span>Sunrise: </span>{useConvertTime(currentData.data.sys.sunrise, currentData.data.timezone, false)}
+            <span>Sunrise: </span>{convertTime(currentData.data.sys.sunrise, currentData.data.timezone, 'hours')}
           </div>
           <div>
-            <span>Sunset: </span>{useConvertTime(currentData.data.sys.sunset, currentData.data.timezone, false)}
+            <span>Sunset: </span>{convertTime(currentData.data.sys.sunset, currentData.data.timezone, 'hours')}
           </div>
           <div>
             <span>Visibility: </span>{(Number(currentData.data.visibility)/1000).toFixed(1)} km

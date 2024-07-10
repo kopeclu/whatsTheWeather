@@ -1,22 +1,29 @@
 import ForecastCurrent from './ForecastCurrent';
-import ForecastFuture from './ForecastFuture';
+import Forecast24Hours from './Forecast24Hours';
+import Forecast4Days from './Forecast4Days';
 
 const Forecast = ({futureData, currentData}) => {
 
   return (
     <div className="forecast">
 
-      <h1>
+      <div className="forecast-city-name">
         {currentData.data.name}
-      </h1>
+      </div>
 
-      <h1>Current:</h1>
+      {/* <h1>Current:</h1> */}
       <ForecastCurrent currentData={currentData} />
 
-      <h1>Forecast:</h1>
-      { futureData.map((data, index) => (
-        <ForecastFuture data={data} timezone={currentData.data.timezone} key={index} />
-        ))}
+      <div className="forecast-header">
+        Next 24 hours:
+      </div>
+      <Forecast24Hours futureData={futureData} />
+
+      <div className="forecast-header">
+        Next 4 days:
+      </div>
+      <Forecast4Days futureData={futureData} timePresent={currentData.data.dt} timezone={currentData.data.timezone} />
+        
 
     </div>
   );

@@ -1,0 +1,54 @@
+import Element4Days from "./Element4Days";
+import { convertTime } from "./functions";
+
+const Forecast4Days = ({futureData, timePresent, timezone}) => {
+
+  // Slice the array for separate days (3 hours * 8 for each day)
+  const sliceArray = (array, chunkSize) => {
+    let result = [];
+    for (let i = 0; i < 31; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
+  };
+
+  // Separate the data for following 4 days
+  const getFourDaysData = (fullData, timezone, timePresent) => {
+    let tmpArray = [];
+    let fourDaysData = [];
+    let fourDaysString = [];
+
+    fullData.forEach((el) => {
+      if (convertTime(el.dt, timezone, 'day') !== convertTime(timePresent, timezone, 'day')){
+        tmpArray.push(el);
+      }
+    })
+
+    fourDaysData = sliceArray(tmpArray, 8);
+
+    // Get string of the four days
+    fourDaysData.forEach((el) => {
+      const date1 = convertTime(el[0].dt, timezone, 'date');
+      const date = new Date(date1);
+      const options = { weekday: 'long' }; // 'long' gives the full name, 'short' gives the abbreviated name
+      fourDaysString.push(date.toLocaleDateString('en-US', options));
+    })
+
+    console.log(fourDaysData);
+    console.log(fourDaysString);
+
+    return {fourDaysData, fourDaysString};
+  }
+
+  const {fourDaysData, fourDaysString} = getFourDaysData(futureData.list, timezone, timePresent);
+
+  return (
+    <div className="forecast5">
+      {fourDaysString.map((day, index) => (
+        <Element4Days key={index} data={fourDaysData[index]} day={day} timezone={futureData.city.timezone} />
+      ))}
+    </div>
+  );
+}
+ 
+export default Forecast4Days;

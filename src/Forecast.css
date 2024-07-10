@@ -1,3 +1,28 @@
+.forecast {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-city-name {
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* Forecast headers */
+
+.forecast-header {
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 25px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* Current status section */
+
 .forecast-current {
   background-color: aliceblue;
   margin: 10px 0;
@@ -42,4 +67,19 @@
 
 .cweather-see-more {
   display: none;
+}
+
+/* 24 hours section */
+
+.forecast24 {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 10px;
+  padding: 20px 30px;
+}
+
+.element24 {
+  min-width: 150px;
 }
