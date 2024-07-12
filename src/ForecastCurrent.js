@@ -1,6 +1,6 @@
 import { convertTime, getUrl } from "./functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTemperatureHigh } from "@fortawesome/free-solid-svg-icons";
+import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
 const ForecastCurrent = ({currentData}) => {
   /**
@@ -19,16 +19,16 @@ const ForecastCurrent = ({currentData}) => {
       <div className="cweather-all-info">
 
         <div>
-        <FontAwesomeIcon icon={faTemperatureHigh} />{currentData.data.main.temp}°C
+        <FontAwesomeIcon icon={faTemperatureHigh} className="icon" />{currentData.data.main.temp}°C
         </div>
         <div>
-         <span>Wind: </span>{currentData.data.wind.speed} m/s
+          <FontAwesomeIcon icon={faCloudRain} className="icon" /> {currentData.data.rain === undefined ? 0 : currentData.data.rain['1h']} mm
         </div>
         <div>
-         <span>Clouds: </span>{currentData.data.clouds.all} %
+          <FontAwesomeIcon icon={faWind} className="icon" /> {currentData.data.wind.speed} m/s
         </div>
         <div>
-         <span>Rain: </span>{currentData.data.rain === undefined ? 0 : currentData.data.rain['1h']} mm
+          <FontAwesomeIcon icon={faCloud} className="icon" /> {currentData.data.clouds.all} %
         </div>
 
       </div>

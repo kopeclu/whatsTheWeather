@@ -6,7 +6,7 @@
 .forecast-city-name {
   width: fit-content;
   padding: 10px 20px;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 700;
   margin-left: 10px;
 }
@@ -15,10 +15,9 @@
 
 .forecast-header {
   width: fit-content;
-  padding: 10px 20px;
-  font-size: 25px;
+  padding: 30px;
+  font-size: 30px;
   font-weight: 700;
-  margin-left: 10px;
 }
 
 /* Current status section */
@@ -26,9 +25,11 @@
 .forecast-current {
   background-color: aliceblue;
   margin: 10px 0;
-  padding: 25px;
+  padding: 30px 40px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  font-size: 20px;
 }
 
 .cimg {
@@ -39,7 +40,7 @@
 
 .cweather-all-info {
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
 .cweather-all-info span {
@@ -51,6 +52,7 @@
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
+  margin-top: 30px;
 }
 
 #ch {
@@ -58,7 +60,9 @@
 }
 
 #ch:checked ~ .cweather-see-more {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #ch:checked ~ #see-more {
@@ -67,6 +71,7 @@
 
 .cweather-see-more {
   display: none;
+  margin-top: 20px;
 }
 
 /* 24 hours section */
@@ -76,10 +81,88 @@
   flex-direction: row;
   overflow-x: auto;
   white-space: nowrap;
-  gap: 10px;
-  padding: 20px 30px;
+  margin: 20px 30px;
 }
 
 .element24 {
   min-width: 150px;
+  padding: 20px 30px;
+  background-color: aliceblue;
+}
+
+/* 4 days section */
+
+.forecast4 {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+
+.forecast4-days {
+  display: flex;
+}
+
+.forecast4-days button {
+  font-size: 24px;
+  background-color: rgb(226, 242, 255);
+  border: none;
+  padding: 20px 25px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.forecast4-days button:hover {
+  background-color: rgb(213, 236, 255);
+}
+
+.element4 {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* selected button */
+.selected {
+  background-color: rgb(103, 139, 255) !important;
+}
+
+.selected:hover {
+  background-color: rgb(117, 179, 255) !important;
+}
+
+/* Forecast bellow buttons */
+
+.element4-content {
+  padding: 20px 30px;
+  background-color: aliceblue;
+}
+
+.element4-content div {
+  font-size: 20px;
+
+}
+
+/* General styles */
+
+.element-hours {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.element-main {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 25px !important;
+}
+
+.element-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 20px;
+}
+
+.icon {
+  margin-right: 5px;
 }

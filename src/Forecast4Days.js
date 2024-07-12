@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Element4Days from "./Element4Days";
 import { convertTime } from "./functions";
 
 const Forecast4Days = ({futureData, timePresent, timezone}) => {
+  const [selectedDay, setSelectedDay] = useState(0);
+
 
   // Slice the array for separate days (3 hours * 8 for each day)
   const sliceArray = (array, chunkSize) => {
@@ -43,10 +46,15 @@ const Forecast4Days = ({futureData, timePresent, timezone}) => {
   const {fourDaysData, fourDaysString} = getFourDaysData(futureData.list, timezone, timePresent);
 
   return (
-    <div className="forecast5">
-      {fourDaysString.map((day, index) => (
-        <Element4Days key={index} data={fourDaysData[index]} day={day} timezone={futureData.city.timezone} />
-      ))}
+    <div className="forecast4">
+      <div className="forecast4-days">
+        {fourDaysString.map((day, index) => (
+          <button className={index === selectedDay ? 'selected' : ''} key={index} onClick={() => setSelectedDay(index)}>
+            {day}
+          </button>
+        ))}
+      </div>
+      <Element4Days data={fourDaysData[selectedDay]} timezone={futureData.city.timezone} />
     </div>
   );
 }
