@@ -2,52 +2,34 @@ import './App.css';
 import './Card.css';
 import './Header.css';
 import './Forecast.css';
-import Header from './Header';
-import { useState } from 'react';
-import Card from './Card';
 import Forecast from './Forecast';
-import useFetch from './useFetch';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Home from './Home';
+import Error404 from './Error404';
+import BottomBar from './BottomBar';
 
 function App() {
-/**
- * 
- * predelat fetch futuredata, aby to slo vytvorit bez .map()
- * 
- * ve futureforecast udelat sekci na 24h a 5 dni
- */
-
-  const [city, setCity] = useState();
-  // const isInitialRender = useRef(true);
-  const {currentData, futureData, isPending, isError} = useFetch(city);
-
-
-  // useEffect(() => {
-  //   if (isInitialRender.current) {
-  //     isInitialRender.current = false;
-  //     return;
-  //   }
-
-  //   const {currentData, futureData, isError} = useFetch(city);
-  // }, [city])
+  /**
+   * design bottom bar
+   * design error
+   * novy klic
+   * zprovoznit home page
+   * design karet
+   * text na home page: upozornit na zvlastni vyhledavani
+   * animace infa u card
+   */
 
   return (
-    <div className="App">
-      <Header city={city} setCity={setCity}/>
-      { isPending &&
-        <div>
-          Loading...
-        </div>
-      }
-      { isError && 
-        <div>
-          An error occures! :(
-        </div>
-      }
-      { futureData && currentData && 
-        <Forecast futureData={futureData} currentData={currentData} />
-      }
-      <Card />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="city/:city" element={<Forecast />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+        <BottomBar />
+      </div>
+    </Router>
   );
 }
 

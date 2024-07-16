@@ -37,8 +37,8 @@ const Forecast4Days = ({futureData, timePresent, timezone}) => {
       fourDaysString.push(date.toLocaleDateString('en-US', options));
     })
 
-    console.log(fourDaysData);
-    console.log(fourDaysString);
+    // console.log(fourDaysData);
+    // console.log(fourDaysString);
 
     return {fourDaysData, fourDaysString};
   }

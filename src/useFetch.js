@@ -12,6 +12,12 @@ const useFetch = (city) => {
   const isInitialRender = useRef(true)
   const keyAPI = process.env.REACT_APP_KEY;
 
+  /**
+   * vytvorit druhy api key
+   * jeden pouzit na currecnt
+   * druhy na forecast
+   */
+
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
 
   useEffect(() => {
@@ -46,7 +52,8 @@ const useFetch = (city) => {
 
     axios.get(weatherURL)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
+      console.log('Triggering useFetch with', city);
       setFutureData(result.data);
       setIsError(false);
       setisPending(false);
@@ -70,7 +77,7 @@ const useFetch = (city) => {
 
     axios.get(currentURL)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       setCurrentData(result);
       setIsError(false);
       setisPending(false);

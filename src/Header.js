@@ -1,33 +1,36 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { replaceSpaces } from "./functions";
 
-const Header = ({city, setCity}) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const replaceSpaces = (word) => {
-    return word.replace(' ', '-');
-  }
+const Header = () => {
+  const [city, setCity] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    setCity(replaceSpaces(inputValue));
-    setInputValue('');
+    // setCity(replaceSpaces(city));
+    navigate(`/city/${replaceSpaces(city)}`);
+    setCity('');
   }
 
   return (
-    <div className="header">
-      <form id="cityInput" onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Find a city'
-          value={inputValue}
-          onChange={(e) => {setInputValue(e.target.value)}}/>
-        <button>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
-      </form>
+    <div className="header-space">
+      <Link to="/" id="home">Home</Link>
+      <div className="header">
+        <form id="cityInput" onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Find a city'
+            value={city}
+            onChange={(e) => {setCity(e.target.value)}}/>
+          <button>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

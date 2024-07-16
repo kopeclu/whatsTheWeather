@@ -30,3 +30,7 @@ export function convertTime(unixTime, timezone, format) {
 export function getUrl(givenIcon) {
   return `https://openweathermap.org/img/wn/${givenIcon}@2x.png`;
 }
+
+export function replaceSpaces(word) {
+  return word.replace(' ', '-');
+}

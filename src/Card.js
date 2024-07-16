@@ -1,12 +1,19 @@
-const Card = ({data}) => {
+import { replaceSpaces } from "./functions";
+import useFetch from "./useFetch";
+
+const Card = ({city}) => {
+  const {currentData} = useFetch(replaceSpaces(city));
+
   return (
     <div className="card">
       <h1>
-        Name
+        {city}
       </h1>
-      <div className="card-info">
-        info here..
-      </div>
+      {currentData &&
+        <div className="card-info">
+          {currentData.data.main.temp}°C {console.log('city displayed:', city)}
+        </div>
+      }
     </div>
   );
 }

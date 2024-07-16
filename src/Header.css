@@ -1,18 +1,24 @@
 .header {
-  margin: 20px 0;
   display: flex;
   justify-content: center;
+  background: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(220, 240, 255) 100%),
+    url('./img/clouds.jpg') no-repeat center top;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 200px;
 }
 
 .header form {
   width: fit-content;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  color: black;
 }
 
 .header input,
 .header button {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.412);
   border: none;
   padding: 10px 14px;
   font-size: 25px;
@@ -24,4 +30,21 @@
 
 .header input:focus {
   outline: none;
+}
+
+#home {
+  position: absolute;
+  left: 40px;
+  top: 45px;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  background-color: rgba(58, 163, 255, 0.348);
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.15s;
+}
+
+#home:hover {
+  background-color: rgba(67, 167, 255, 0.507);
 }
