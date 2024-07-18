@@ -3,9 +3,6 @@ import { convertTime, getUrl } from "./functions";
 import { faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
 const Element24Hours = ({data, timezone}) => {
-  /**
-   * temp, rain atd zmenit za male ikonky
-   */
 
   return (
     <div className="element24">

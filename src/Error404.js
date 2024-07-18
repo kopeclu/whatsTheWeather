@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 
 const Error404 = () => {
   return (
-    <>
-      <h3>
-        Erooooor
-      </h3>
-      Back to <Link to="/">home page</Link>
+    <div className="error">
+      <h1>
+        404: page not found
+      </h1>
+      <div>
+        Back to <Link to="/">home page</Link>
+      </div>
       
-    </>
+    </div>
   );
 }
  
