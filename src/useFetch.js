@@ -53,7 +53,7 @@ const useFetch = (city) => {
     axios.get(weatherURL)
     .then((result) => {
       // console.log(result);
-      console.log('Triggering useFetch with', city);
+      // console.log('Triggering useFetch with', city);
       setFutureData(result.data);
       setIsError(false);
       setisPending(false);
