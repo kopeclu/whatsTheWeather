@@ -54,6 +54,11 @@
   font-weight: 600;
 }
 
+.cweather-all-info i {
+  white-space: nowrap;
+  font-style: normal;
+}
+
 .forecast-current label {
   color: red;
   font-weight: 600;
