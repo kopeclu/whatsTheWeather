@@ -7,6 +7,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './Home';
 import Error404 from './Error404';
 import BottomBar from './BottomBar';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   /**

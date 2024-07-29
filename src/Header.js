@@ -1,4 +1,4 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,8 +18,11 @@ const Header = () => {
 
   return (
     <div className="header-space">
-      <Link to="/" id="home">Home</Link>
+      <Link to="/" id="home1">Home</Link>
       <div className="header">
+        <Link to="/" id="home2">
+          <FontAwesomeIcon icon={faHouse} />
+        </Link>
         <form id="cityInput" onSubmit={handleSubmit}>
           <input
             type='text'

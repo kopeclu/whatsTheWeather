@@ -32,7 +32,7 @@
   outline: none;
 }
 
-#home {
+#home1 {
   position: absolute;
   left: 40px;
   top: 45px;
@@ -47,4 +47,48 @@
 
 #home:hover {
   background-color: rgba(67, 167, 255, 0.507);
+}
+
+#home2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.532);
+  cursor: pointer;
+  display: none;
+  z-index: 100;
+}
+
+@media screen and (max-width: 650px) {
+  #home1 {
+    display: none;
+  }
+
+  #home2 {
+    display: block;
+  }
+
+  .header {
+    padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .header input,
+  .header button {
+    font-size: 20px;
+  }
+
+  .header input {
+    width: 200px;
+  }
+
+  #home2 {
+    padding: 12px;
+  }
+
+  .header {
+    padding-bottom: 50px;
+  }
 }

@@ -12,6 +12,8 @@
   min-height: 100vh;
 }
 
+/* Bottom bar section */
+
 .bottom-bar {
   color: white;
   display: flex;
@@ -19,6 +21,7 @@
   position:static;
   bottom: 0;
   background-color: rgb(93, 93, 93);
+  margin-top: 80px;
 }
 
 .bottom-left {
@@ -48,7 +51,11 @@
 
 .bottom-right div {
   padding-right: 20px;
+  max-width: 600px;
+  font-size: 13px;
 }
+
+/* Error page */
 
 .error {
   min-height: 100vh;
@@ -60,4 +67,72 @@
 
 .error div {
   font-size: 20px;
+}
+
+/* Welcome message */
+
+.welcome-message {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.welcome-message p {
+  background-color: rgba(255, 255, 255, 0.252);
+  width: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.068);
+  max-width: 1000px;
+  font-size: 24px;
+}
+
+.welcome-message p span {
+  font-weight: 600;
+}
+
+/* Map section */
+
+.displayed-map {
+  display: flex;
+  justify-content: center;
+  margin: 40px 10px;
+}
+
+.leaflet-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.509);
+  height: 500px;
+  width: 1000px;
+  border: 2px solid rgba(0, 0, 0, 0.283);
+}
+
+.legend div {
+  padding: 3px;
+}
+
+@media screen and (max-width: 650px) {
+  .welcome-message p {
+    font-size: 18px;
+  }
+
+  .bottom-right div {
+    font-size: 11px;
+  }
+
+  .bottom-left div {
+    font-size: 13px;
+  }
+
+  .bottom-left {
+    padding: 30px 10px;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .welcome-message p {
+    font-size: 15px;
+  }
+
 }

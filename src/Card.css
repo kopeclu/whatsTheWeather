@@ -3,7 +3,8 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  min-height: 100vh;
+  min-height: 50vh;
+  /* min-height: 100vh; */
 }
 
 .card {
@@ -15,9 +16,14 @@
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
   height: 250px;
   width: 200px;
+  color: black;
 }
 
 .card-info div {
   font-size: 20px;
   font-weight: 500;
+}
+
+.card h1 {
+  text-decoration: none;
 }
