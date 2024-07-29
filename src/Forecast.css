@@ -180,3 +180,27 @@
 .icon {
   margin-right: 5px;
 }
+
+@media screen and (max-width: 550px) {
+  .forecast4-days {
+    flex-direction: column;
+  }
+
+  .forecast-header {
+    font-size: 23px;
+  }
+
+  .element24 {
+    padding: 10px 0;
+  }
+
+  .element-info div {
+    font-size: 16px;
+  }
+
+  .cweather-all-info {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 17px;
+  }
+}
