@@ -31,7 +31,7 @@ const Forecast = () => {
   if (!currentData){
     console.log('pending:', isPending);
     console.log('error:', isError);
-    return <h2>Loading...</h2>
+    return <h2 className="loading">Loading...</h2>
   }
 
 

@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import Card from "./Card";
+// import { Link } from "react-router-dom";
+// import Card from "./Card";
 import Header from "./Header"
-import { replaceSpaces } from "./functions";
-import { LayersControl, MapContainer, TileLayer, useMap } from "react-leaflet";
-import { useEffect } from "react";
-import L from 'leaflet';
+// import { replaceSpaces } from "./functions";
+import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
+// import { useEffect } from "react";
+// import L from 'leaflet';
 import Legend from "./Legend";
 
 const Home = () => {
@@ -18,6 +18,7 @@ const Home = () => {
 
   const { BaseLayer, Overlay } = LayersControl;
   const baseMapUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  const keyAPI = process.env.REACT_APP_KEY;
 
   
 
@@ -51,7 +52,7 @@ const Home = () => {
               <TileLayer url={baseMapUrl} />
             </BaseLayer>
             <Overlay checked name="Temperature">
-              <TileLayer url={'https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=4ead5f751ee6ac092e72723a7f9467b5'} opacity={1} zIndex={1000} />
+              <TileLayer url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${keyAPI}`} opacity={1} zIndex={1000} />
             </Overlay>
           </LayersControl>
           <Legend />
