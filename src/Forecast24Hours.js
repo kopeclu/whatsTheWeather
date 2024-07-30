@@ -1,6 +1,6 @@
 import Element24Hours from "./Element24Hours";
 
-const Forecast24Hours = ({futureData}) => {
+const Forecast24Hours = ({futureData, metric}) => {
 
   const next24Hours = futureData.list.slice(0, 8);
   const timezone = futureData.city.timezone;
@@ -8,7 +8,7 @@ const Forecast24Hours = ({futureData}) => {
   return (
     <div className="forecast24">
       {next24Hours.map((el, index) => (
-        <Element24Hours key={index} data={el} timezone={timezone} />
+        <Element24Hours key={index} data={el} timezone={timezone} metric={metric} />
       ))}
     </div>
   );
