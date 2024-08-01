@@ -29,8 +29,6 @@ const useFetch = (lon, lat) => {
 
     axios.get(weatherURL)
     .then((result) => {
-      // console.log(result);
-      console.log('Triggering useFetch with');
       setFutureData(result.data);
       setIsError(false);
       setisPending(false);
@@ -54,8 +52,6 @@ const useFetch = (lon, lat) => {
 
     axios.get(currentURL)
     .then((result) => {
-      // console.log(result);
-      console.log('another axios trigger');
       setCurrentData(result);
       setIsError(false);
       setisPending(false);

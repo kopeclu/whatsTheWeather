@@ -20,8 +20,9 @@ const Header = () => {
     e.preventDefault();
 
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log('lon:', position.coords.longitude);
-      console.log('lat:', position.coords.latitude);
+      const lon = position.coords.longitude;
+      const lat = position.coords.latitude;
+      navigate(`/city/${lon}/${lat}`);
     })
   }
 
