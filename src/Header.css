@@ -14,14 +14,20 @@
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   color: black;
+  display: flex;
 }
 
 .header input,
-.header button {
+.header button,
+#locate-btn {
   background-color: rgba(255, 255, 255, 0.412);
   border: none;
   padding: 10px 14px;
   font-size: 25px;
+}
+
+#locate-btn {
+  cursor: pointer;
 }
 
 .header button {

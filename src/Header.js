@@ -1,19 +1,28 @@
-import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { replaceSpaces } from "./functions";
+import { getTested, replaceSpaces } from "./functions";
 
 const Header = () => {
   const [city, setCity] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log('handle submit');
     e.preventDefault();
-    
-    // setCity(replaceSpaces(city));
-    navigate(`/city/${replaceSpaces(city)}`);
+    const {lon, lat} = await getTested(replaceSpaces(city));
+    navigate(`/city/${lon}/${lat}`);
     setCity('');
+  }
+
+  const getUserLocation = (e) => {
+    e.preventDefault();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log('lon:', position.coords.longitude);
+      console.log('lat:', position.coords.latitude);
+    })
   }
 
   return (
@@ -29,6 +38,9 @@ const Header = () => {
             placeholder='Find a city'
             value={city}
             onChange={(e) => {setCity(e.target.value)}}/>
+          <div id="locate-btn" onClick={getUserLocation}>
+            <FontAwesomeIcon icon={faLocationCrosshairs} />
+          </div>
           <button>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>

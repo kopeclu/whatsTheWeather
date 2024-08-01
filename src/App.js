@@ -25,7 +25,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="city/:city" element={<Forecast />} />
+          <Route path="city/:lon/:lat" element={<Forecast />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         <BottomBar />

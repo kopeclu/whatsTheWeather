@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useHomeFetch = (city) => {
+const useGetCoords = (city) => {
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
-  const [currentData, setCurrentData] = useState();
   const keyAPI = process.env.REACT_APP_KEY;
 
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
@@ -20,23 +19,7 @@ const useHomeFetch = (city) => {
     })
   }, [locationURL]);
 
-  const currentURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
-
-  useEffect(() => {
-    if (!lon){
-      return;
-    }
-    axios.get(currentURL)
-    .then((result) => {
-      setCurrentData(result);
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, [currentURL]);
-
-  return {currentData};
+  return {lon, lat};
 }
  
-export default useHomeFetch;
+export default useGetCoords;

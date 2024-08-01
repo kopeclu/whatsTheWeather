@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
 
-const useFetch = (city) => {
+const useFetch = (lon, lat) => {
 
-  const [lon, setLon] = useState();
-  const [lat, setLat] = useState();
+  console.log('in fetch:', lon, lat);
+
   const [futureData, setFutureData] = useState();
   const [currentData, setCurrentData] = useState();
   const [isPending, setisPending] = useState(true);
@@ -18,29 +18,6 @@ const useFetch = (city) => {
    * druhy na forecast
    */
 
-  const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
-
-  useEffect(() => {
-    if (isInitialRender.current) {
-      setIsError(false);
-      setisPending(false);
-      return;
-    }
-
-    axios.get(locationURL)
-    .then((result) => {
-      setLon(result.data[0].lon);
-      setLat(result.data[0].lat);
-      setIsError(false);
-      setisPending(false);
-    })
-    .catch((err) => {
-      setIsError(true);
-      setisPending(false);
-      console.log(err);
-    })
-  }, [locationURL])
-
   const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
 
   useEffect(() => {
@@ -53,7 +30,7 @@ const useFetch = (city) => {
     axios.get(weatherURL)
     .then((result) => {
       // console.log(result);
-      // console.log('Triggering useFetch with', city);
+      console.log('Triggering useFetch with');
       setFutureData(result.data);
       setIsError(false);
       setisPending(false);
@@ -78,6 +55,7 @@ const useFetch = (city) => {
     axios.get(currentURL)
     .then((result) => {
       // console.log(result);
+      console.log('another axios trigger');
       setCurrentData(result);
       setIsError(false);
       setisPending(false);

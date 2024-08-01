@@ -1,5 +1,7 @@
 // Convert unix time to human readable
 
+import axios from "axios";
+
 export function convertTime(unixTime, timezone, format) {
   let humanTime;
   const date = new Date((unixTime+timezone) * 1000);
@@ -33,4 +35,19 @@ export function getUrl(givenIcon) {
 
 export function replaceSpaces(word) {
   return word.replace(' ', '-');
+}
+
+export async function getTested(city) {
+
+  const keyAPI = process.env.REACT_APP_KEY;
+
+  const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
+
+  const result = await axios.get(locationURL);
+  console.log('result:', result);
+  const lon = result.data[0].lon;
+  const lat = result.data[0].lat;
+
+  console.log('returning lon:', lon);
+  return {lon, lat};
 }
