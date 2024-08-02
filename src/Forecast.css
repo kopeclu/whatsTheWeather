@@ -181,6 +181,26 @@
   margin-right: 5px;
 }
 
+/* Change metrics */
+
+.set-metrics {
+  position: fixed;
+  background-color: rgba(220, 240, 255, 0.616);
+  padding: 7px;
+  bottom: 0;
+  right: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.329);
+  border-left: 1px solid rgba(0, 0, 0, 0.329);
+  font-size: 18px;
+  display: flex;
+}
+
+#metric-form input {
+  margin: 0 4px;
+}
+
+/* Responsible design */
+
 @media screen and (max-width: 550px) {
   .forecast4-days {
     flex-direction: column;
@@ -202,5 +222,9 @@
     flex-direction: column;
     align-items: flex-start;
     font-size: 17px;
+  }
+
+  .set-metrics {
+    font-size: 15px;
   }
 }

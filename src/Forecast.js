@@ -13,6 +13,7 @@ const Forecast = () => {
   const {lon, lat} = useParams();
 
   const [trigger, setTrigger] = useState(false);
+  const [ metric, setMetric ] = useState('m/s');
 
   useEffect(() => {
     if (lon !== undefined && lat !== undefined) {
@@ -36,23 +37,32 @@ const Forecast = () => {
   return (
     <>
       <Header />
+      <div className="set-metrics">
+        <p>Wind speed: </p>
+        <form id="metric-form">
+          <input type="radio" id="ms" value="ms" name="metric" checked={metric === 'm/s'} onChange={() => setMetric('m/s')} />
+          <label htmlFor="ms">m/s</label>
+          <input type="radio" id="kt" value="kt" name="metric" checked={metric === 'kt'} onChange={() => setMetric('kt')} />
+          <label htmlFor="kt">kt</label>
+        </form>
+      </div>
       {currentData && futureData &&
         <div className="forecast">
 
           <div className="forecast-city-name">
             {currentData.data.name}
           </div>
-          <ForecastCurrent currentData={currentData} />
+          <ForecastCurrent currentData={currentData} metric={metric} />
 
           <div className="forecast-header">
             Next 24 hours:
           </div>
-          <Forecast24Hours futureData={futureData} />
+          <Forecast24Hours futureData={futureData} metric={metric} />
 
           <div className="forecast-header">
             Next 4 days:
           </div>
-          <Forecast4Days futureData={futureData} timePresent={currentData.data.dt} timezone={currentData.data.timezone} />
+          <Forecast4Days futureData={futureData} timePresent={currentData.data.dt} timezone={currentData.data.timezone} metric={metric} />
         </div>
       }
     </>

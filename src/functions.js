@@ -37,6 +37,12 @@ export function replaceSpaces(word) {
   return word.replace(' ', '-');
 }
 
+export function convertToKnots(meterSpeed) {
+  const convesionCONST = 1.94384449;
+  const knotSpeed = meterSpeed * convesionCONST;
+  return knotSpeed.toFixed(2);
+}
+
 // Get coordinates of given city
 
 export async function getCoords(city) {

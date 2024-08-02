@@ -2,7 +2,7 @@ import { useState } from "react";
 import Element4Days from "./Element4Days";
 import { convertTime } from "./functions";
 
-const Forecast4Days = ({futureData, timePresent, timezone}) => {
+const Forecast4Days = ({futureData, timePresent, timezone, metric}) => {
   const [selectedDay, setSelectedDay] = useState(0);
 
 
@@ -51,7 +51,7 @@ const Forecast4Days = ({futureData, timePresent, timezone}) => {
           </button>
         ))}
       </div>
-      <Element4Days data={fourDaysData[selectedDay]} timezone={futureData.city.timezone} />
+      <Element4Days data={fourDaysData[selectedDay]} timezone={futureData.city.timezone} metric={metric} />
     </div>
   );
 }

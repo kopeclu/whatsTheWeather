@@ -1,8 +1,8 @@
-import { convertTime, getUrl } from "./functions";
+import { convertTime, convertToKnots, getUrl } from "./functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
-const ForecastCurrent = ({currentData}) => {
+const ForecastCurrent = ({currentData, metric}) => {
 
   return (
     <div className="forecast-current">
@@ -22,7 +22,7 @@ const ForecastCurrent = ({currentData}) => {
           <FontAwesomeIcon icon={faCloudRain} className="icon" /> {currentData.data.rain === undefined ? 0 : currentData.data.rain['1h']} mm
         </div>
         <div>
-          <FontAwesomeIcon icon={faWind} className="icon" /> {currentData.data.wind.speed} m/s
+          <FontAwesomeIcon icon={faWind} className="icon" /> {`${metric === 'm/s' ? currentData.data.wind.speed : convertToKnots(currentData.data.wind.speed)} ${metric}`}
         </div>
         <div>
           <FontAwesomeIcon icon={faCloud} className="icon" /> {currentData.data.clouds.all} %

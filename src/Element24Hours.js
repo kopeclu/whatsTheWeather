@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { convertTime, getUrl } from "./functions";
+import { convertTime, convertToKnots, getUrl } from "./functions";
 import { faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
-const Element24Hours = ({data, timezone}) => {
+const Element24Hours = ({data, timezone, metric}) => {
 
   return (
     <div className="element24">
@@ -23,7 +23,7 @@ const Element24Hours = ({data, timezone}) => {
           <FontAwesomeIcon icon={faCloudRain} className="icon" />  {data.rain === undefined ? 0 : data.rain['3h']} mm
         </div>
         <div>
-          <FontAwesomeIcon icon={faWind} className="icon" />  {data.wind.speed} m/s
+          <FontAwesomeIcon icon={faWind} className="icon" />  {`${metric === 'm/s' ? data.wind.speed : convertToKnots(data.wind.speed)} ${metric}`}
         </div>
       </div>
 
