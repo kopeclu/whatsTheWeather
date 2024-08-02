@@ -66,7 +66,7 @@
   z-index: 100;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 680px) {
   #home1 {
     display: none;
   }
@@ -78,16 +78,21 @@
   .header {
     padding-bottom: 100px;
   }
+
+  .header input {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 460px) {
   .header input,
-  .header button {
+  .header button,
+  #locate-btn {
     font-size: 20px;
   }
 
   .header input {
-    width: 200px;
+    width: 150px;
   }
 
   #home2 {

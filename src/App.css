@@ -117,7 +117,7 @@
   padding: 3px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 680px) {
   .welcome-message p {
     font-size: 18px;
   }
