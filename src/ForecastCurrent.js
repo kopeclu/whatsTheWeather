@@ -3,9 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
 const ForecastCurrent = ({currentData}) => {
-  /**
-   * nahradit text za ikonky
-   */
 
   return (
     <div className="forecast-current">

@@ -1,34 +1,12 @@
-// import { Link } from "react-router-dom";
-// import Card from "./Card";
 import Header from "./Header"
-// import { replaceSpaces } from "./functions";
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
-// import { useEffect } from "react";
-// import L from 'leaflet';
 import Legend from "./Legend";
 
 const Home = () => {
-  // const europeCities = ['London', 'Barcelona', 'Paris', 'Madrid', 'Berlin', 'Prague', 'Rome', 'Zagreb', 'Wien', 'Split'];
-
-  // const americaCities = ['New York', 'Los Angeles', 'Washington DC', 'Las Vegas', 'San Francisco', 'Ottawa', 'Rio de Janeiro'];
-
-  // const asiaCities = ['Tokyo', 'Beijing', 'Hong Kong', 'New Dilli'];
-
-  // Start of Leaflet
 
   const { BaseLayer, Overlay } = LayersControl;
   const baseMapUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
   const keyAPI = process.env.REACT_APP_KEY;
-
-  
-
-  // End of Leaflet
-
-  // const getRandomInt = (range) => {
-  //   return Math.floor(Math.random() * range);
-  // }
-
-  // const chosenCities = [europeCities[getRandomInt(europeCities.length)],americaCities[getRandomInt(americaCities.length)], asiaCities[getRandomInt(asiaCities.length)]];
 
   return (
     <>
@@ -58,18 +36,6 @@ const Home = () => {
           <Legend />
         </MapContainer>
       </div>
-
-      {/* <div className="card-list">
-        {chosenCities.map((city, index) => {
-          const targetCity = replaceSpaces(city);
-
-          return (
-            <Link to={`/city/${targetCity}`} key={index}>
-              <Card city={city} key={index} />
-            </Link>
-          )
-        })}
-      </div> */}
     </>
   );
 }

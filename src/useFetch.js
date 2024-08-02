@@ -3,20 +3,12 @@ import axios from 'axios';
 
 const useFetch = (lon, lat) => {
 
-  console.log('in fetch:', lon, lat);
-
   const [futureData, setFutureData] = useState();
   const [currentData, setCurrentData] = useState();
   const [isPending, setisPending] = useState(true);
   const [isError, setIsError] = useState(false);
   const isInitialRender = useRef(true)
   const keyAPI = process.env.REACT_APP_KEY;
-
-  /**
-   * vytvorit druhy api key
-   * jeden pouzit na currecnt
-   * druhy na forecast
-   */
 
   const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
 

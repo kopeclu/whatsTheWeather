@@ -2,18 +2,23 @@ import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getTested, replaceSpaces } from "./functions";
+import { getCoords, replaceSpaces } from "./functions";
 
 const Header = () => {
   const [city, setCity] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log('handle submit');
     e.preventDefault();
-    const {lon, lat} = await getTested(replaceSpaces(city));
-    navigate(`/city/${lon}/${lat}`);
-    setCity('');
+
+    try {
+      const {lon, lat} = await getCoords(replaceSpaces(city));
+      navigate(`/city/${lon}/${lat}`);
+      setCity('');
+    } catch (err) {
+      console.log(err);
+      navigate('/404');
+    }
   }
 
   const getUserLocation = (e) => {

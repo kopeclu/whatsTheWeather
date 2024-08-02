@@ -1,5 +1,4 @@
 import './App.css';
-import './Card.css';
 import './Header.css';
 import './Forecast.css';
 import Forecast from './Forecast';
@@ -10,16 +9,6 @@ import BottomBar from './BottomBar';
 import 'leaflet/dist/leaflet.css';
 
 function App() {
-  /**
-   * design bottom bar
-   * design error
-   * novy klic
-   * zprovoznit home page
-   * design karet
-   * text na home page: upozornit na zvlastni vyhledavani
-   * animace infa u card
-   */
-
   return (
     <Router>
       <div className="App">
