@@ -64,13 +64,13 @@ const Header = () => {
             placeholder='Find a city'
             value={city}
             onChange={(e) => {setCity(e.target.value)}}/>
-          <div id="locate-btn" onClick={getUserLocation}>
-            <FontAwesomeIcon icon={faLocationCrosshairs} />
-          </div>
           <button>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>
+        <button id="locate-btn" onClick={getUserLocation}>
+          <FontAwesomeIcon icon={faLocationCrosshairs} />
+        </button>
       </div>
     </div>
   );
