@@ -44,6 +44,9 @@ const Header = () => {
         case error.UNKNOWN_ERROR:
           alert("An unknown error occurred.");
           break;
+        default:
+          console.log('unknow problem');
+          break;
       }
     })
   }
