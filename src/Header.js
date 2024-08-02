@@ -48,6 +48,10 @@ const Header = () => {
           console.log('unknow problem');
           break;
       }
+    }, {
+      enableHighAccuracy: true,
+      maximumAge: 10000,
+      timeout: 5000
     })
   }
 
