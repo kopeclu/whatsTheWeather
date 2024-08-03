@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCoords, replaceSpaces } from "./functions";
+import axios from "axios";
 
 const Header = () => {
   const [city, setCity] = useState('');
   const [searching, setSearching] = useState(false);
+  const googleApiKey = process.env.REACT_APP_GOOGLE_KEY;
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,49 +24,22 @@ const Header = () => {
     }
   }
 
-  const getUserLocation = (e) => {
+  const getUserLocation = async (e) => {
     e.preventDefault();
 
-    if (navigator.geolocation){
+    try {
       setSearching(true);
-
-      const watchID = navigator.geolocation.watchPosition((position) => {
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
-        setSearching(false);
-        navigate(`/city/${lon}/${lat}`);
-      },
-      (error) => {
-        console.error(error);
-        switch(error.code) {
-          case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-          case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-          case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-          default:
-            console.log('unknow problem');
-            break;
-        }
-      }, {
-        enableHighAccuracy: true,
-        maximumAge: 100,
-        timeout: 10000
-      })
-
-      setTimeout( () => {
-        navigator.geolocation.clearWatch(watchID)
-      }, 10000);
-    } else {
-      alert('geolocating not supported');
+      console.log(googleApiKey);
+      const result = await axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${googleApiKey}`);
+      const {location} = result.data;
+      const lon = location.lng;
+      const lat = location.lat;
+      setSearching(false);
+      navigate(`/city/${lon}/${lat}`);
+    } catch (err) {
+      console.log(err);
     }
+
   }
 
   return (
