@@ -6,6 +6,7 @@ import { getCoords, replaceSpaces } from "./functions";
 
 const Header = () => {
   const [city, setCity] = useState('');
+  const [searching, setSearching] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,39 +25,46 @@ const Header = () => {
   const getUserLocation = (e) => {
     e.preventDefault();
 
-    const watchID = navigator.geolocation.watchPosition((position) => {
-      const lon = position.coords.longitude;
-      const lat = position.coords.latitude;
-      navigate(`/city/${lon}/${lat}`);
-    },
-    (error) => {
-      console.error(error);
-      switch(error.code) {
-        case error.PERMISSION_DENIED:
-          alert("User denied the request for Geolocation.");
-          break;
-        case error.POSITION_UNAVAILABLE:
-          alert("Location information is unavailable.");
-          break;
-        case error.TIMEOUT:
-          alert("The request to get user location timed out.");
-          break;
-        case error.UNKNOWN_ERROR:
-          alert("An unknown error occurred.");
-          break;
-        default:
-          console.log('unknow problem');
-          break;
-      }
-    }, {
-      enableHighAccuracy: true,
-      maximumAge: 100,
-      timeout: 60000
-    })
+    if (navigator.geolocation){
+      setSearching(true);
 
-    setTimeout( () => {
-      navigator.geolocation.clearWatch(watchID)
-    }, 5000);
+      const watchID = navigator.geolocation.watchPosition((position) => {
+        const lon = position.coords.longitude;
+        const lat = position.coords.latitude;
+        setSearching(false);
+        navigate(`/city/${lon}/${lat}`);
+      },
+      (error) => {
+        console.error(error);
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+          default:
+            console.log('unknow problem');
+            break;
+        }
+      }, {
+        enableHighAccuracy: true,
+        maximumAge: 100,
+        timeout: 10000
+      })
+
+      setTimeout( () => {
+        navigator.geolocation.clearWatch(watchID)
+      }, 10000);
+    } else {
+      alert('geolocating not supported');
+    }
   }
 
   return (
@@ -80,6 +88,9 @@ const Header = () => {
           <FontAwesomeIcon icon={faLocationCrosshairs} />
         </button>
       </div>
+      {searching &&
+        <h2 className="loading">Loading...</h2>
+      }
     </div>
   );
 }
