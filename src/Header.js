@@ -24,12 +24,6 @@ const Header = () => {
   const getUserLocation = (e) => {
     e.preventDefault();
 
-    if (navigator.geolocation) {
-      alert('supported geolocation');
-    } else {
-      alert('geolocation not suported');
-    }
-
     const watchID = navigator.geolocation.watchPosition((position) => {
       const lon = position.coords.longitude;
       const lat = position.coords.latitude;
