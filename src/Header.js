@@ -24,6 +24,12 @@ const Header = () => {
   const getUserLocation = (e) => {
     e.preventDefault();
 
+    if (navigator.geolocation) {
+      alert('supported geolocation');
+    } else {
+      alert('geolocation not suported');
+    }
+
     navigator.geolocation.getCurrentPosition((position) => {
       const lon = position.coords.longitude;
       const lat = position.coords.latitude;
