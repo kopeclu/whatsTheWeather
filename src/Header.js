@@ -30,7 +30,7 @@ const Header = () => {
       alert('geolocation not suported');
     }
 
-    navigator.geolocation.getCurrentPosition((position) => {
+    const watchID = navigator.geolocation.watchPosition((position) => {
       const lon = position.coords.longitude;
       const lat = position.coords.latitude;
       navigate(`/city/${lon}/${lat}`);
@@ -56,9 +56,13 @@ const Header = () => {
       }
     }, {
       enableHighAccuracy: true,
-      maximumAge: 10000,
-      timeout: 5000
+      maximumAge: 100,
+      timeout: 60000
     })
+
+    setTimeout( () => {
+      navigator.geolocation.clearWatch(watchID)
+    }, 5000);
   }
 
   return (
