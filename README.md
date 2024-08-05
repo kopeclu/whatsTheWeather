@@ -68,8 +68,8 @@ In this file you can find defined functions that are used more that 1 time or/an
 ### useFetch.js
 This is a custom React hook that takes two arguments (longitude, latitude). It fetches the data and returns it with information if the data is already fetched (in case of poor connection) and if there was an error (it also displays in the console, but for the render of the page it is nice to have).
 
-<code style="color : gold">TEST</code>
-$${\color{lightgreen}Light \space Green}$$
+<span style="color : gold">TEST</span>
+
 ### Files in the front
 
 ### index.js
