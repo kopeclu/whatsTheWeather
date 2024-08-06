@@ -14,14 +14,14 @@ A simple weather app created as a personal project to showcase author's skill in
 The webpage is already hosted on [Netlify](https://my-weather-app-01.netlify.app/)
 If you want to change the source code on your machine, follow next steps:
 
-1. Clone the repository using terminal: **git clone git@github.com:kopeclu/whatsTheWeather.git**,
-2. Go to the project repository by typing **cd whatsTheWeather**,
-3. Install all dependencies by typing **npm install**,
-4. Start the website on your machine by typing **npm run start**,
+1. Clone the repository using terminal: <code>**git clone git@github.com:kopeclu/whatsTheWeather.git**</code>,
+2. Go to the project repository by typing <code>**cd whatsTheWeather**</code>,
+3. Install all dependencies by typing <code>**npm install**</code>,
+4. Start the website on your machine by typing <code>**npm run start**</code>,
 5. Your default web browser should open your page, if not, visit *localhost:3000*.
 
 # Explanation
-## In this section is explained the structure of repository
+**In this section is explained the structure of repository**
 
 ## 1. JSON and .env files
 In those files you can find description of the project (name, dependencies, versions...).
@@ -36,10 +36,10 @@ Other files here are not important, they were created by default when the app wa
 ## 3. /src directory
 Let's make some groups here, so the explanation is clear.
 
-### A) **/img directory**
+- ### **/img directory**
 In this directory there is only one image that is used in the **Header** section.
 
-### B) **.css files**
+- ### **.css files**
 **For those files isn't created special folder, because there is only 3 of them and the project is still readable also thanks to naming of those files.**
 
 **`App.css`**
@@ -54,7 +54,7 @@ You can find here all the styling for all secions that display something connect
 
 Here is styling of displayed header (input bar, home button, background of the top section)
 
-### C) **.js files**
+- ### **.js files**
 **This section still constains a lot of files, so let's divide it first.**
 
 
