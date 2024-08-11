@@ -1,14 +1,12 @@
 import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { detectPlatform, getCoords, replaceSpaces } from "./functions";
-import Geolocation from 'react-native-geolocation-service';
 
 const Header = () => {
   const [city, setCity] = useState('');
   const [searching, setSearching] = useState(false);
-  const [permission, setPermission] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,41 +22,27 @@ const Header = () => {
     }
   }
 
-  useEffect(() => {
-    if (permission) {
-      Geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position);
-          const lon = position.coords.longitude;
-          const lat = position.coords.latitude;
-          setSearching(false);
-          navigate(`/city/${lon}/${lat}`);
-        },
-        (error) => {
-          // See error code charts below.
-          console.log(error.code, error.message);
-        },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
-    }
-  }, [permission, navigate])
-
   const getUserLocation = async (e) => {
     e.preventDefault();
 
     if (detectPlatform() === 'Mobile'){
-      const result = await navigator.permissions.query({ name: 'geolocation' });
       setSearching(true);
 
-      if (result.state === 'granted'){
-        setPermission(true);
-      } else {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          setPermission(true);
-        })
-      }
-
-      setSearching(false);
+      navigator.geolocation.getCurrentPosition((position) => {
+        alert('This feature is not 100% accurate and may not work on mobile devices.');
+        const lon = position.coords.longitude;
+        const lat = position.coords.latitude;
+        setSearching(false);
+        navigate(`/city/${lon}/${lat}`);
+      }, (error) => {
+        console.log(error);
+        setSearching(false);
+      }, {
+        enableHighAccuracy: true,
+        maximumAge: 100,
+        timeout: 10000
+      })
+      
     } else {
       setSearching(true);
       
