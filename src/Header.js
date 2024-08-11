@@ -54,7 +54,8 @@ const Header = () => {
 
     // Via React Geolocation
       navigator.geolocation.getCurrentPosition((pos) => {
-        alert('Permission allowed');
+        return;
+        // alert('Permission allowed');
       })
 
       Geolocation.getCurrentPosition(
@@ -104,7 +105,7 @@ const Header = () => {
         setSearching(false);
       }, {
         enableHighAccuracy: true,
-        maximumAge: Infinity,
+        maximumAge: 100,
         timeout: 10000
       })
 
