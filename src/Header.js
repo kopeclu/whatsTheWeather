@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { detectPlatform, getCoords, replaceSpaces } from "./functions";
-import axios from "axios";
+// import axios from "axios";
+import Geolocation from 'react-native-geolocation-service';
 
 const Header = () => {
   const [city, setCity] = useState('');
   const [searching, setSearching] = useState(false);
-  const googleApiKey = process.env.REACT_APP_GOOGLE_KEY;
+  // const googleApiKey = process.env.REACT_APP_GOOGLE_KEY;
   // const apiKey = process.env.REACT_APP_HERE_API;
   const navigate = useNavigate();
 
@@ -31,22 +32,47 @@ const Header = () => {
     // const response = await axios.post(`https://pos.ls.hereapi.com/positioning/v1/locate?apiKey=${apiKey}`);
     // console.log(response);
 
+    setSearching(true);
     console.log(detectPlatform());
 
-    // if (detectPlatform() === 'Mobile'){
-      try {
-        setSearching(true);
-        const result = await axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${googleApiKey}`);
-        console.log(result);
-        const {location} = result.data;
-        const lon = location.lng;
-        const lat = location.lat;
+    if (detectPlatform() === 'Mobile'){
+
+    // Via Google
+      // try {
+      //   setSearching(true);
+      //   const result = await axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${googleApiKey}`);
+      //   console.log(result);
+      //   const {location} = result.data;
+      //   const lon = location.lng;
+      //   const lat = location.lat;
+      //   setSearching(false);
+      //   navigate(`/city/${lon}/${lat}`);
+      // } catch (err) {
+      //   console.log(err);
+      // }
+
+    // Via React Geolocation
+    navigator.geolocation.getCurrentPosition((pos) => {
+      console.log('Got permission');
+    })
+
+    Geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position);
+        const lon = position.coords.longitude;
+        const lat = position.coords.latitude;
         setSearching(false);
         navigate(`/city/${lon}/${lat}`);
-      } catch (err) {
-        console.log(err);
-      }
-    // } else {
+      },
+      (error) => {
+        // See error code charts below.
+        console.log(error.code, error.message);
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    );
+    
+
+    } else {
       setSearching(true);
       
       const watchID = navigator.geolocation.watchPosition((position) => {
@@ -77,14 +103,14 @@ const Header = () => {
         setSearching(false);
       }, {
         enableHighAccuracy: true,
-        maximumAge: 100,
+        maximumAge: Infinity,
         timeout: 10000
       })
 
       setTimeout( () => {
         navigator.geolocation.clearWatch(watchID)
       }, 10000);
-    // }
+    }
   }
 
   return (
