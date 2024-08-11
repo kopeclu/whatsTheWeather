@@ -1,6 +1,6 @@
 import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { detectPlatform, getCoords, replaceSpaces } from "./functions";
 import Geolocation from 'react-native-geolocation-service';
@@ -8,6 +8,7 @@ import Geolocation from 'react-native-geolocation-service';
 const Header = () => {
   const [city, setCity] = useState('');
   const [searching, setSearching] = useState(false);
+  const [permission, setPermission] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,19 +24,8 @@ const Header = () => {
     }
   }
 
-  const getUserLocation = async (e) => {
-    e.preventDefault();
-    
-    console.log(detectPlatform());
-
-    if (detectPlatform() === 'Mobile'){
-      setSearching(true);
-
-      // Asking user for permission
-      navigator.geolocation.getCurrentPosition((pos) => {
-        return;
-      })
-
+  useEffect(() => {
+    if (permission) {
       Geolocation.getCurrentPosition(
         (position) => {
           console.log(position);
@@ -50,47 +40,62 @@ const Header = () => {
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
       );
-    
+    }
+  }, [permission, navigate])
 
-    } else {
+  const getUserLocation = async (e) => {
+    e.preventDefault();
+    
+    console.log(detectPlatform());
+
+    // if (detectPlatform() === 'Mobile'){
       setSearching(true);
-      
-      const watchID = navigator.geolocation.watchPosition((position) => {
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
-        setSearching(false);
-        navigate(`/city/${lon}/${lat}`);
-      },
-      (error) => {
-        console.error(error);
-        switch(error.code) {
-          case error.PERMISSION_DENIED:
-            console.log("User denied the request for Geolocation.");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            console.log("Location information is unavailable.");
-            break;
-          case error.TIMEOUT:
-            console.log("The request to get user location timed out.");
-            break;
-          case error.UNKNOWN_ERROR:
-            console.log("An unknown error occurred.");
-            break;
-          default:
-            console.log('unknow problem');
-            break;
-        }
-        setSearching(false);
-      }, {
-        enableHighAccuracy: true,
-        maximumAge: 100,
-        timeout: 10000
+
+      // Asking user for permission
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setPermission(true);
       })
 
-      setTimeout( () => {
-        navigator.geolocation.clearWatch(watchID)
-      }, 10000);
-    }
+      setSearching(false);
+    // } else {
+    //   setSearching(true);
+      
+    //   const watchID = navigator.geolocation.watchPosition((position) => {
+    //     const lon = position.coords.longitude;
+    //     const lat = position.coords.latitude;
+    //     setSearching(false);
+    //     navigate(`/city/${lon}/${lat}`);
+    //   },
+    //   (error) => {
+    //     console.error(error);
+    //     switch(error.code) {
+    //       case error.PERMISSION_DENIED:
+    //         console.log("User denied the request for Geolocation.");
+    //         break;
+    //       case error.POSITION_UNAVAILABLE:
+    //         console.log("Location information is unavailable.");
+    //         break;
+    //       case error.TIMEOUT:
+    //         console.log("The request to get user location timed out.");
+    //         break;
+    //       case error.UNKNOWN_ERROR:
+    //         console.log("An unknown error occurred.");
+    //         break;
+    //       default:
+    //         console.log('unknow problem');
+    //         break;
+    //     }
+    //     setSearching(false);
+    //   }, {
+    //     enableHighAccuracy: true,
+    //     maximumAge: 100,
+    //     timeout: 10000
+    //   })
+
+    //   setTimeout( () => {
+    //     navigator.geolocation.clearWatch(watchID)
+    //   }, 10000);
+    // }
   }
 
   return (
