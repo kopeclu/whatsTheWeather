@@ -47,55 +47,59 @@ const Header = () => {
     e.preventDefault();
     
     console.log(detectPlatform());
+    if (navigator.geolocation){
+      console.log('navigator spotted');
+    }
 
-    // if (detectPlatform() === 'Mobile'){
+    if (detectPlatform() === 'Mobile'){
       setSearching(true);
 
       // Asking user for permission
       navigator.geolocation.getCurrentPosition((pos) => {
+        console.log('user allowed');
         setPermission(true);
       })
 
       setSearching(false);
-    // } else {
-    //   setSearching(true);
+    } else {
+      setSearching(true);
       
-    //   const watchID = navigator.geolocation.watchPosition((position) => {
-    //     const lon = position.coords.longitude;
-    //     const lat = position.coords.latitude;
-    //     setSearching(false);
-    //     navigate(`/city/${lon}/${lat}`);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //     switch(error.code) {
-    //       case error.PERMISSION_DENIED:
-    //         console.log("User denied the request for Geolocation.");
-    //         break;
-    //       case error.POSITION_UNAVAILABLE:
-    //         console.log("Location information is unavailable.");
-    //         break;
-    //       case error.TIMEOUT:
-    //         console.log("The request to get user location timed out.");
-    //         break;
-    //       case error.UNKNOWN_ERROR:
-    //         console.log("An unknown error occurred.");
-    //         break;
-    //       default:
-    //         console.log('unknow problem');
-    //         break;
-    //     }
-    //     setSearching(false);
-    //   }, {
-    //     enableHighAccuracy: true,
-    //     maximumAge: 100,
-    //     timeout: 10000
-    //   })
+      const watchID = navigator.geolocation.watchPosition((position) => {
+        const lon = position.coords.longitude;
+        const lat = position.coords.latitude;
+        setSearching(false);
+        navigate(`/city/${lon}/${lat}`);
+      },
+      (error) => {
+        console.error(error);
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            console.log("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            console.log("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            console.log("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            console.log("An unknown error occurred.");
+            break;
+          default:
+            console.log('unknow problem');
+            break;
+        }
+        setSearching(false);
+      }, {
+        enableHighAccuracy: true,
+        maximumAge: 100,
+        timeout: 10000
+      })
 
-    //   setTimeout( () => {
-    //     navigator.geolocation.clearWatch(watchID)
-    //   }, 10000);
-    // }
+      setTimeout( () => {
+        navigator.geolocation.clearWatch(watchID)
+      }, 10000);
+    }
   }
 
   return (
