@@ -57,3 +57,13 @@ export async function getCoords(city) {
 
   return {lon, lat};
 }
+
+export function detectPlatform() {
+  const userAgent = navigator.userAgent.toLowerCase();
+
+  if (/mobile|android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent)) {
+      return 'Mobile';
+  } else {
+      return 'Computer';
+  }
+}
