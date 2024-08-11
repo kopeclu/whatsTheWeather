@@ -28,9 +28,9 @@ const Header = () => {
 
     if (isMobile){
       setSearching(true);
+      alert('This feature is not 100% accurate and may not work on mobile devices.');
 
       navigator.geolocation.getCurrentPosition((position) => {
-        alert('This feature is not 100% accurate and may not work on mobile devices.');
         const lon = position.coords.longitude;
         const lat = position.coords.latitude;
         setSearching(false);
