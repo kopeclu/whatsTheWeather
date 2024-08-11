@@ -32,10 +32,11 @@ const Header = () => {
     // const response = await axios.post(`https://pos.ls.hereapi.com/positioning/v1/locate?apiKey=${apiKey}`);
     // console.log(response);
 
-    setSearching(true);
+    
     console.log(detectPlatform());
 
     if (detectPlatform() === 'Mobile'){
+      setSearching(true);
 
     // Via Google
       // try {
@@ -52,24 +53,24 @@ const Header = () => {
       // }
 
     // Via React Geolocation
-    navigator.geolocation.getCurrentPosition((pos) => {
-      console.log('Got permission');
-    })
+      navigator.geolocation.getCurrentPosition((pos) => {
+        alert('Permission allowed');
+      })
 
-    Geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position);
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
-        setSearching(false);
-        navigate(`/city/${lon}/${lat}`);
-      },
-      (error) => {
-        // See error code charts below.
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    );
+      Geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position);
+          const lon = position.coords.longitude;
+          const lat = position.coords.latitude;
+          setSearching(false);
+          navigate(`/city/${lon}/${lat}`);
+        },
+        (error) => {
+          // See error code charts below.
+          console.log(error.code, error.message);
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
     
 
     } else {
