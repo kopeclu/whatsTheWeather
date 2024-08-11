@@ -18,7 +18,6 @@ const Forecast = () => {
   useEffect(() => {
     if (lon !== undefined && lat !== undefined) {
       setTrigger(true);
-      // console.log('setting true');
     }
   }, [lon, lat])
 

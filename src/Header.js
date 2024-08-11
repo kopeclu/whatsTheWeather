@@ -3,14 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { detectPlatform, getCoords, replaceSpaces } from "./functions";
-// import axios from "axios";
 import Geolocation from 'react-native-geolocation-service';
 
 const Header = () => {
   const [city, setCity] = useState('');
   const [searching, setSearching] = useState(false);
-  // const googleApiKey = process.env.REACT_APP_GOOGLE_KEY;
-  // const apiKey = process.env.REACT_APP_HERE_API;
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,34 +25,15 @@ const Header = () => {
 
   const getUserLocation = async (e) => {
     e.preventDefault();
-
-    // const response = await axios.post(`https://pos.ls.hereapi.com/positioning/v1/locate?apiKey=${apiKey}`);
-    // console.log(response);
-
     
     console.log(detectPlatform());
 
     if (detectPlatform() === 'Mobile'){
       setSearching(true);
 
-    // Via Google
-      // try {
-      //   setSearching(true);
-      //   const result = await axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${googleApiKey}`);
-      //   console.log(result);
-      //   const {location} = result.data;
-      //   const lon = location.lng;
-      //   const lat = location.lat;
-      //   setSearching(false);
-      //   navigate(`/city/${lon}/${lat}`);
-      // } catch (err) {
-      //   console.log(err);
-      // }
-
-    // Via React Geolocation
+      // Asking user for permission
       navigator.geolocation.getCurrentPosition((pos) => {
         return;
-        // alert('Permission allowed');
       })
 
       Geolocation.getCurrentPosition(
