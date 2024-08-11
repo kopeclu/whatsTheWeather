@@ -45,20 +45,18 @@ const Header = () => {
 
   const getUserLocation = async (e) => {
     e.preventDefault();
-    
-    console.log(detectPlatform());
-    if (navigator.geolocation){
-      console.log('navigator spotted');
-    }
 
     if (detectPlatform() === 'Mobile'){
+      const result = await navigator.permissions.query({ name: 'geolocation' });
       setSearching(true);
 
-      // Asking user for permission
-      navigator.geolocation.getCurrentPosition((pos) => {
-        console.log('user allowed');
+      if (result.state === 'granted'){
         setPermission(true);
-      })
+      } else {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          setPermission(true);
+        })
+      }
 
       setSearching(false);
     } else {
