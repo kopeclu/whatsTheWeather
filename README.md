@@ -1,5 +1,5 @@
 # MyWeatherApp
-A simple weather app created as a personal project to showcase author's skill in web development and data visualization. This app was created by **npx create-react-app** script.
+A simple weather app created as a personal project to showcase author's skill in web development and data visualization. You can find here data about current weather and forecast for next 4 days. Most places on the earth can be found, also user's device's position can be located (not working 100% on mobile devices).
 
 <br>
 
@@ -13,15 +13,49 @@ A simple weather app created as a personal project to showcase author's skill in
 <br>
 
 # Description
-what this app does - current weather + forecast
-why i used the technology i used - openweather map - free, most popular, google maps api - free, works on mobiles
-challenges i faced + features in future - challenges were maps, coordinates, styling of header, features in future will be idk now
+
+<br>
+
+## What is this app
+
+This app is basic live weather app with 4-days forecast. You can find any place you want, also your current position (problems about this feature in [Usage](#usage)).
+
+## Technology I used
+
+There are many options, what API to use to get the weather data, in my case I use [OpenWeather](https://openweathermap.org/). The reason behind this is simple. They offer really huge amount of data for free, you can use their geolocator and weather map. This is all in a free bundle, there is only monthly limitation, which is okay in a personal project like this.
+
+## Challenges
+
+There were huge challenges, but i managed to solve almost all of them.
+
+### Styling
+
+The first challenge was styling the header section. I had a vision in my mind how it should look, but I didn't know whether it is possible to desing, epecially the smooth opacity coming over the clouds in the background, with my basic CSS skills.
+
+### Searching algorithm
+
+The second challenge was code the algorithm that finds the place that the user wants. The design of the OpenWeather's  geolocator really helped. Basically i only had to create the right URL that can be correctly fetched, which means i only had to edit the user's input to be in the form that the URL needs.
+
+### Map on home page
+
+The third challenge was including the map to the home page. This wasn't in my vision, but when I found out this feature is for free, it didn't sound bad to be on the home page. The problem was I never worked with displaying maps so it was something i had to learn. It had many versions and I decided to use the one that is displayed now. Still one unsolved problem here, the colors. I tried to configure it to look more user frindly, but i didn't manage to do it.
+
+### User's location on mobile devices
+
+The last challenge was finding out how to code the locator of user's device on mobile devices. The problem here is that the request (request for user's location from the web browser) on mobiles can time out and the user will never get the result. Why is this happening nobody knows (all i found was "we know about this, but nodoby solved it for years"), but it is well know problem. You can use alternatives, but they are not precise, because web browser uses GPS location (most precise), but alternatives are not free or uses goelocator via IP addreses and cellular towers. Location got from this can be outside of reality when you are not connected to WiFi. My solution I coded is to use the web browser geolocation (GPS), but before using it, alert the user i may not work. Interesting here is that with that alert it works most of the time (obviously not because what i typed in that alert, but just because of some alert).
+
+## Future
+
+In the future I will probably redesign the home page and also the forecast style.
+
+Maybe some new features such as adding some places to your favourite, so it will display on the home page, but this would be really huge and take a lot of time to implement.
 
 
 <br>
 
 # Instalation
-The webpage is already hosted on [Netlify](https://my-weather-app-01.netlify.app/)
+The web app is already hosted on [Netlify](https://my-weather-app-01.netlify.app/)
+
 If you want to change the source code on your machine, follow next steps:
 
 1. Clone the repository using terminal:
@@ -44,111 +78,30 @@ If you want to change the source code on your machine, follow next steps:
     ```
 5. Your default web browser should open your page, if not, visit *localhost:3000*.
 
-<br>
-<br>
-
-<!-- # Explanation
-**In this section it is explained the structure of repository and every element of each file.**
 
 <br>
-
-## 1. JSON and .env files
-In those files you can find description of the project (name, dependencies, versions...).
-File *package.json* is essential while installing the node_modules directory (see [Instalation](#instalation)).
-
-The .env files should be by hidden from user (there should be sensitive data that no user should be able to see), but in this case, it is necessary to be visible for every user seeing this repository, because this repository is already hosted (see [Instalation](#instalation)), so if it wouldn't be visible here, the hosted page would not work correctly. 
-
-In file .env there are stored two API keys, one from OpenWeather, second from Google Maps.
-
 <br>
-
-## 2. /public directory
-The most important file here is *index.html*, which can the user see on a web (that is logic, when the directory's name is *public*). This file start all the logic behind (that the user is not able to see) by including the *root* div.
-Other files here are not important, they were created by default when the app was declared (see [Description](#description)).
-
-<br>
-
-## 3. /src directory
-Let's make some groups here, so the explanation is clear.
-
-### **/img directory**
-  <code>In this directory there is only one image that is used in the Header section.</code>
-
-### **.css files**
-  <code>For those files isn't created special folder, because there is only 3 of them and the project is still readable.  This fact is true also thanks to naming of those files.</code>
-
-- #### `App.css`
-
-  In this file you can find styling for all the text and background color of the page, bottom bar section, styling of 404 page, welcome message and map section. It is basically styling of home page, general styling and 404 page.
-
-<br>
-
-- #### `Forecast.css`
-
-  You can find here all the styling for all secions that display something connected with the forecast
-
-<br>
-
-- #### `Header.css`
-
-  Here is styling of displayed header (input bar, home button, background of the top section)
-
-<br>
-
-### **.js files**
-This section still constains a lot of files, so let's divide it first.
-
-
-1. #### **Files in the background**
-    <code>These files are not visible on the actual page but are crutial for developing and running the App.</code>
-
-    - ##### `App.test.js`
-
-      Important file that is testing your app after every save you do and checks if all the components renders correctly and lets you know about warnings and errors in your app.
-
-      The file is the same
-
-    - ##### `reportWebVitals.js`
-
-      This file allows you to monitor the performance of your React application by capturing important metrics like Cumulative Layout Shift (CLS), First Input Delay (FID), First Contentful Paint (FCP), Largest Contentful Paint (LCP), and Time to First Byte (TTFB).
-
-    - ##### `functions.js`
-
-      In this file you can find defined functions that are used more that 1 time or/and functions difficult to read.
-
-    - ##### `useFetch.js`
-
-      This is a custom React hook that takes two arguments (longitude, latitude). It fetches the data and returns it with information if the data is already fetched (in case of poor connection) and if there was an error (it also displays in the console, but for the render of the page it is nice to have).
-
-<br>
-
-2. #### Files in the front 
-    <code>These are the files containing all the content displayed to the user (but it has also its section hidden to the user).</code>
-
-    - ##### `index.js`
-
-      This file is connected to the **/public/index.html** file by rendering the *root* div, more precisely the *App* (App.js).
-
-    - ##### `App.js`
-
-      Alpha and omega of your app. You can change here the structure of your page, set the routes etc. In this App there are next 3 routes.
-
-      - <code>**'/'**</code> for Home page.
-
-      - <code>**'/city/longitude/latitude'**</code> for Forecast for a city on given coordinates.
-
-      - <code>**'*'**</code> this cover every other route and it will render the 404 page.
-
-      **Note:** In hosted version on Netlify, this doesn't work as perfect as you could think. If you use the user interface to get to other pages, the URL is shown correcly, but if you know your coordinates and you customize the URL to your preference, you wouldn't get the right render of the page. This error is caused on Netlify's side. But if you host the App on your machine (*localhost:3000*) it works the right way. You can customize the URL and you will get the forecast of the nearest city of give coordinates. The only way you could get 404 is that you give coordinated far away from any civilization.
-
-    - #### `Home.js`
-
-<br>
-<br> -->
 
 # Usage
-how to searched for a place
 
-how to understand URLs
+<br>
 
-API can time out
+## Searching options
+
+You can search for any place on the earth you want by typing the name of the place in the input bar and press *Enter* or the *magnifying glass icon*. If you want to get the information about the place you are right now, just press the *locator icon*. This feature works on computer devices, but on mobile devices, there is a chance the request time out. This is a well known problem but not solved for years. Alternatives exists, but they are not precise (especially when you are not connected to a WiFi). My solution to this is described [here](#users-location-on-mobile-devices).
+
+## URL understanding
+
+My app have several URLs.
+
+<code>/</code> for home page,
+
+<code>/city/*longtitude*/*latitude*</code> (where *longtitude* and *latitude* are numbers - coordinates) for forecast,
+
+<code>/*</code> for everything else. It redirects you to 404 error page, because other paths than the previous two don't exist.
+
+So you can find the forecast just by typing for example <code>/city/51/0</code> to see the forecast for London. This works, but not on my hosted version on Netflify. I don't really know why they don't support this. But if you host it on your machine (localhost:3000) or you pay for web hosting, it will work correctly.
+
+## Limiting usage
+
+As I wrote in the [beggining](#technology-i-used), I use the free bundle of API calls, so when somebody spams a lot of places for a long time, it can happen the minute/monthly limit is reached. In this case you have to wait a minute or a month, based on what limit you reached.
