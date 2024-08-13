@@ -1,5 +1,5 @@
 # MyWeatherApp
-A simple weather app created as a personal project to showcase author's skill in web development and data visualization. You can find here data about current weather and forecast for next 4 days. Most places on the earth can be found, also user's device's position can be located (not working 100% on mobile devices).
+A simple weather app created as a personal project to showcase author's skill in web development and data visualization. You can find here data about current weather and forecast for next 4 days. Most places on the earth can be found, also user's device's position can be located (not working 100% on mobile devices, more details [here](#users-location-on-mobile-devices)).
 
 <br>
 
@@ -45,6 +45,8 @@ The third challenge was including the map to the home page. This wasn't in my vi
 The last challenge was finding out how to code the locator of user's device on mobile devices. The problem here is that the request (request for user's location from the web browser) on mobiles can time out and the user will never get the result. Why is this happening nobody knows (all i found was "we know about this, but nodoby solved it for years"), but it is well know problem. You can use alternatives, but they are not precise, because web browser uses GPS location (most precise), but alternatives are not free or uses goelocator via IP addreses and cellular towers. Location got from this can be outside of reality when you are not connected to WiFi. My solution I coded is to use the web browser geolocation (GPS), but before using it, alert the user i may not work. Interesting here is that with that alert it works most of the time (obviously not because what i typed in that alert, but just because of some alert).
 
 ## Future
+
+Next what I would implement is the autosuggest feature. It would be faster for the user to find the place he is looking for.
 
 In the future I will probably redesign the home page and also the forecast style.
 
