@@ -14,14 +14,20 @@
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   color: black;
+  display: flex;
 }
 
 .header input,
-.header button {
+.header button,
+#locate-btn {
   background-color: rgba(255, 255, 255, 0.412);
   border: none;
   padding: 10px 14px;
   font-size: 25px;
+}
+
+#locate-btn {
+  cursor: pointer;
 }
 
 .header button {
@@ -60,7 +66,7 @@
   z-index: 100;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 680px) {
   #home1 {
     display: none;
   }
@@ -72,16 +78,21 @@
   .header {
     padding-bottom: 100px;
   }
+
+  .header input {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 460px) {
   .header input,
-  .header button {
+  .header button,
+  #locate-btn {
     font-size: 20px;
   }
 
   .header input {
-    width: 200px;
+    width: 150px;
   }
 
   #home2 {

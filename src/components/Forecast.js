@@ -10,29 +10,25 @@ const Forecast = () => {
 
   const navigate = useNavigate();
 
-  const {city} = useParams();
+  const {lon, lat} = useParams();
 
   const [trigger, setTrigger] = useState(false);
-
   const [ metric, setMetric ] = useState('m/s');
 
   useEffect(() => {
-    if (city) {
+    if (lon !== undefined && lat !== undefined) {
       setTrigger(true);
-      console.log('setting true');
     }
-  }, [city])
+  }, [lon, lat])
 
   // eslint-disable-next-line
-  const {currentData, futureData, isPending, isError} = useFetch(trigger ? city : null);
+  const {currentData, futureData, isPending, isError} = useFetch(trigger ? lon : null, trigger ? lat : null);
   
   if (isError){
     navigate('/404');
   }
 
   if (!currentData){
-    console.log('pending:', isPending);
-    console.log('error:', isError);
     return <h2 className="loading">Loading...</h2>
   }
 

@@ -16,7 +16,7 @@ const ForecastCurrent = ({currentData, metric}) => {
       <div className="cweather-all-info">
 
         <div>
-          <FontAwesomeIcon icon={faTemperatureHigh} className="icon" />{currentData.data.main.temp}°C
+        <FontAwesomeIcon icon={faTemperatureHigh} className="icon" />{currentData.data.main.temp}°C
         </div>
         <div>
           <FontAwesomeIcon icon={faCloudRain} className="icon" /> {currentData.data.rain === undefined ? 0 : currentData.data.rain['1h']} mm
@@ -34,10 +34,10 @@ const ForecastCurrent = ({currentData, metric}) => {
       <div className="cweather-see-more">
         <div className="cweather-all-info">
           <div>
-            <span>Pressure: </span><i className="cweather-all-nowrap">{currentData.data.main.pressure} hPa</i>
+            <span>Pressure: </span>{currentData.data.main.pressure} hPa
           </div>
           <div>
-            <span>Humidity: </span><i className="cweather-all-nowrap">{currentData.data.main.humidity} %</i>
+            <span>Humidity: </span>{currentData.data.main.humidity} %
           </div>
           <div>
             <span>Sunrise: </span>{convertTime(currentData.data.sys.sunrise, currentData.data.timezone, 'hours')}
@@ -46,7 +46,7 @@ const ForecastCurrent = ({currentData, metric}) => {
             <span>Sunset: </span>{convertTime(currentData.data.sys.sunset, currentData.data.timezone, 'hours')}
           </div>
           <div>
-            <span>Visibility: </span><i className="cweather-all-nowrap">{(Number(currentData.data.visibility)/1000).toFixed(1)} km</i>
+            <span>Visibility: </span>{(Number(currentData.data.visibility)/1000).toFixed(1)} km
           </div>
         </div>
         <label id="see-less" htmlFor="ch" >See less</label>

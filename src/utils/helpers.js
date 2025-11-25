@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Convert unix time to human readable
 
 export function convertTime(unixTime, timezone, format) {
@@ -39,4 +41,19 @@ export function convertToKnots(meterSpeed) {
   const convesionCONST = 1.94384449;
   const knotSpeed = meterSpeed * convesionCONST;
   return knotSpeed.toFixed(2);
+}
+
+// Get coordinates of given city
+
+export async function getCoords(city) {
+
+  const keyAPI = process.env.REACT_APP_KEY;
+  const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
+
+  const result = await axios.get(locationURL);
+  
+  const lon = result.data[0].lon;
+  const lat = result.data[0].lat;
+
+  return {lon, lat};
 }
