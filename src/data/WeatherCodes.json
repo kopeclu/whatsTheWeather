@@ -1,0 +1,222 @@
+[
+  {
+    "weather": "thunderstorm with light rain",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm with rain",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm with heavy rain",
+    "code": "11"
+  },
+  {
+    "weather": "light thunderstorm",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm",
+    "code": "11"
+  },
+  {
+    "weather": "heavy thunderstorm",
+    "code": "11"
+  },
+  {
+    "weather": "ragged thunderstorm",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm with light drizzle",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm with drizzle",
+    "code": "11"
+  },
+  {
+    "weather": "thunderstorm with heavy drizzle",
+    "code": "11"
+  },
+  {
+    "weather": "light intensity drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "heavy intensity drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "light intensity drizzle rain",
+    "code": "09"
+  },
+  {
+    "weather": "drizzle rain",
+    "code": "09"
+  },
+  {
+    "weather": "heavy intensity drizzle rain",
+    "code": "09"
+  },
+  {
+    "weather": "shower rain and drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "heavy shower rain and drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "shower drizzle",
+    "code": "09"
+  },
+  {
+    "weather": "light rain",
+    "code": "10"
+  },
+  {
+    "weather": "moderate rain",
+    "code": "10"
+  },
+  {
+    "weather": "heavy intensity rain",
+    "code": "10"
+  },
+  {
+    "weather": "very heavy rain",
+    "code": "10"
+  },
+  {
+    "weather": "extreme rain",
+    "code": "10"
+  },
+  {
+    "weather": "freezing rain",
+    "code": "13"
+  },
+  {
+    "weather": "light intensity shower rain",
+    "code": "09"
+  },
+  {
+    "weather": "shower rain",
+    "code": "09"
+  },
+  {
+    "weather": "heavy intensity shower rain",
+    "code": "09"
+  },
+  {
+    "weather": "ragged shower rain",
+    "code": "09"
+  },
+  {
+    "weather": "light snow",
+    "code": "13"
+  },
+  {
+    "weather": "snow",
+    "code": "13"
+  },
+  {
+    "weather": "heavy snow",
+    "code": "13"
+  },
+  {
+    "weather": "sleet",
+    "code": "13"
+  },
+  {
+    "weather": "light shower sleet",
+    "code": "13"
+  },
+  {
+    "weather": "shower sleet",
+    "code": "13"
+  },
+  {
+    "weather": "light rain and snow",
+    "code": "13"
+  },
+  {
+    "weather": "rain and snow",
+    "code": "13"
+  },
+  {
+    "weather": "light shower snow",
+    "code": "13"
+  },
+  {
+    "weather": "shower snow",
+    "code": "13"
+  },
+  {
+    "weather": "heavy shower snow",
+    "code": "13"
+  },
+  {
+    "weather": "mist",
+    "code": "50"
+  },
+  {
+    "weather": "smoke",
+    "code": "50"
+  },
+  {
+    "weather": "haze",
+    "code": "50"
+  },
+  {
+    "weather": "sand/dust whirls",
+    "code": "50"
+  },
+  {
+    "weather": "fog",
+    "code": "50"
+  },
+  {
+    "weather": "sand",
+    "code": "50"
+  },
+  {
+    "weather": "dust",
+    "code": "50"
+  },
+  {
+    "weather": "volcanic ash",
+    "code": "50"
+  },
+  {
+    "weather": "squalls",
+    "code": "50"
+  },
+  {
+    "weather": "tornado",
+    "code": "50"
+  },
+  {
+    "weather": "clear sky",
+    "code": "01"
+  },
+  {
+    "weather": "few clouds",
+    "code": "02"
+  },
+  {
+    "weather": "scattered clouds",
+    "code": "03"
+  },
+  {
+    "weather": "broken clouds",
+    "code": "04"
+  },
+  {
+    "weather": "overcast clouds",
+    "code": "04"
+  }
+]
