@@ -1,12 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { convertTime, convertToKnots, getUrl } from "../utils/helpers";
-import { faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
+import { convertTime, getUrl } from "../utils/helpers";
+import WeatherStat from "./WeatherStat";
 
 const Element24Hours = ({data, timezone, metric}) => {
+  const statsToDisplay = ["temp", "rain", "wind"]
 
   return (
     <div className="element24">
-
       <h5 className="element-hours">
         {convertTime(data.dt, timezone, 'hours')}
       </h5>
@@ -14,19 +13,17 @@ const Element24Hours = ({data, timezone, metric}) => {
       <h5 className="element-main">
         {data.weather[0].main}
       </h5>
-
       <div className="element-info">
-        <div>
-          <FontAwesomeIcon icon={faTemperatureHigh} className="icon" />  {data.main.temp}°C
-        </div>
-        <div>
-          <FontAwesomeIcon icon={faCloudRain} className="icon" />  {data.rain === undefined ? 0 : data.rain['3h']} mm
-        </div>
-        <div>
-          <FontAwesomeIcon icon={faWind} className="icon" />  {`${metric === 'm/s' ? data.wind.speed : convertToKnots(data.wind.speed)} ${metric}`}
-        </div>
+        {statsToDisplay.map((el, index) => (
+          <WeatherStat
+            key={index}
+            type={el}
+            data={data}
+            windMetric={metric}
+            current={false}
+          />
+        ))}
       </div>
-
     </div>
   );
 }
