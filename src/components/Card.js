@@ -1,4 +1,4 @@
-import { getUrl, replaceSpaces } from "./functions";
+import { getUrl, replaceSpaces } from "../utils/helpers";
 import useHomeFetch from "./useHomeFetch";
 
 const Card = ({city}) => {

@@ -1,11 +1,11 @@
 // import { Link } from "react-router-dom";
 // import Card from "./Card";
-import Header from "./Header"
+import Header from "../components/Header"
 // import { replaceSpaces } from "./functions";
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 // import { useEffect } from "react";
 // import L from 'leaflet';
-import Legend from "./Legend";
+import Legend from "../utils/Legend";
 
 const Home = () => {
   // const europeCities = ['London', 'Barcelona', 'Paris', 'Madrid', 'Berlin', 'Prague', 'Rome', 'Zagreb', 'Wien', 'Split'];

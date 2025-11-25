@@ -2,7 +2,7 @@ import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { replaceSpaces } from "./functions";
+import { replaceSpaces } from "../utils/helpers";
 
 const Header = () => {
   const [city, setCity] = useState('');
