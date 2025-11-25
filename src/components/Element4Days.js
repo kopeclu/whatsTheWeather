@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { convertTime, convertToKnots, getUrl } from "./functions";
+import { convertTime, convertToKnots, getUrl } from "../utils/helpers";
 import { faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
 const Element4Days = ({data, timezone, metric}) => {

@@ -1,6 +1,6 @@
-import Header from "./components/Header"
+import Header from "../components/Header"
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
-import Legend from "./Legend";
+import Legend from "../utils/Legend";
 
 const Home = () => {
 

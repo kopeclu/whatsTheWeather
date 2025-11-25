@@ -1,7 +1,7 @@
 import ForecastCurrent from './ForecastCurrent';
 import Forecast24Hours from './Forecast24Hours';
 import Forecast4Days from './Forecast4Days';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from './Header';
 import { useEffect, useState } from 'react';
