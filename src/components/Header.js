@@ -2,7 +2,7 @@ import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCoords, replaceSpaces } from "./functions";
+import { getCoords, replaceSpaces } from "../functions";
 import { isMobile } from "react-device-detect";
 
 const Header = () => {
