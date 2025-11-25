@@ -1,5 +1,5 @@
 import { getUrl, replaceSpaces } from "../utils/helpers";
-import useHomeFetch from "./useHomeFetch";
+import useHomeFetch from "../hooks/useHomeFetch";
 
 const Card = ({city}) => {
   const {currentData} = useHomeFetch(replaceSpaces(city));

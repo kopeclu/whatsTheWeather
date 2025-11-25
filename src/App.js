@@ -1,12 +1,12 @@
-import './App.css';
-import './Card.css';
-import './Header.css';
-import './Forecast.css';
-import Forecast from './Forecast';
+import './assets/styles/App.css';
+import './assets/styles/Card.css';
+import './assets/styles/Header.css';
+import './assets/styles/Forecast.css';
+import Forecast from './components/Forecast';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from './Home';
-import Error404 from './Error404';
-import BottomBar from './BottomBar';
+import Home from './pages/Home';
+import Error404 from './pages/Error404';
+import BottomBar from './components/BottomBar';
 import 'leaflet/dist/leaflet.css';
 
 function App() {

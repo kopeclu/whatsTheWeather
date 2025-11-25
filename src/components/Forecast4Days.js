@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Element4Days from "./Element4Days";
-import { convertTime } from "./functions";
+import { convertTime } from "../utils/helpers";
 
 const Forecast4Days = ({futureData, timePresent, timezone, metric}) => {
   const [selectedDay, setSelectedDay] = useState(0);

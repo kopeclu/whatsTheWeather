@@ -1,4 +1,4 @@
-import { convertTime, convertToKnots, getUrl } from "./functions";
+import { convertTime, convertToKnots, getUrl } from "../utils/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 
