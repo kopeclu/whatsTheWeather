@@ -94,7 +94,7 @@ The application uses client-side routing:
 
 <code>/*</code> - Redirects to 404 Error Page
 
-**Example:** You can navigate directly to /city/51/0 to see the forecast for London.
+**Example:** You can navigate directly to <code>/city/-0.1276474/51.5073219</code> to see the forecast for London.
 
 ## Limiting usage
 
