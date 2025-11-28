@@ -1,19 +1,19 @@
 import { convertTime, getUrl } from "../utils/helpers";
 import WeatherStat from "./WeatherStat";
 
-const Element24Hours = ({data, timezone, metric}) => {
+const ForecasBox = ({data, timezone, metric}) => {
   const statsToDisplay = ["temp", "rain", "wind"]
 
   return (
-    <div className="element24">
-      <h5 className="element-hours">
+    <div className="forecast-box">
+      <h5 className="forecast-box-hours">
         {convertTime(data.dt, timezone, 'hours')}
       </h5>
       <img src={getUrl(data.weather[0].icon)} alt="icon" />
-      <h5 className="element-main">
+      <h5 className="forecast-box-status">
         {data.weather[0].main}
       </h5>
-      <div className="element-info">
+      <div className="forecast-box-info">
         {statsToDisplay.map((el, index) => (
           <WeatherStat
             key={index}
@@ -28,4 +28,4 @@ const Element24Hours = ({data, timezone, metric}) => {
   );
 }
  
-export default Element24Hours;
+export default ForecasBox;

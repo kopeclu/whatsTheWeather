@@ -91,7 +91,7 @@
   margin: 0 30px;
 }
 
-.element24 {
+.forecast-box {
   min-width: 150px;
   padding: 20px 10px;
   background-color: rgba(166, 207, 227, 0.358);
@@ -126,7 +126,7 @@
   background-color: rgba(166, 207, 227, 0.595);
 }
 
-.element4 {
+.forecast4-content {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
@@ -142,35 +142,20 @@
   background-color: rgb(142, 195, 221) !important;
 }
 
-/* Forecast bellow buttons */
-
-.element4-content {
-  padding: 20px 30px;
-  background-color: rgba(166, 207, 227, 0.358);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.element4-content div {
-  font-size: 20px;
-
-}
-
 /* General styles */
 
-.element-hours {
+.forecast-box-hours {
   font-weight: 600;
   font-size: 20px;
 }
 
-.element-main {
+.forecast-box-status {
   font-weight: 600;
   margin-bottom: 15px;
   font-size: 22px !important;
 }
 
-.element-info {
+.forecast-box-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -210,11 +195,11 @@
     font-size: 23px;
   }
 
-  .element24 {
+  .forecast-box {
     padding: 10px 0;
   }
 
-  .element-info div {
+  .forecast-box-info div {
     font-size: 16px;
   }
 

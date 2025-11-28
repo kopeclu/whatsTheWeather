@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Element4Days from "./Element4Days";
 import { convertTime } from "../utils/helpers";
+import ForecastBox from "./ForecasBox";
 
 const Forecast4Days = ({futureData, timePresent, timezone, metric}) => {
   const [selectedDay, setSelectedDay] = useState(0);
@@ -51,7 +51,11 @@ const Forecast4Days = ({futureData, timePresent, timezone, metric}) => {
           </button>
         ))}
       </div>
-      <Element4Days data={fourDaysData[selectedDay]} timezone={futureData.city.timezone} metric={metric} />
+      <div className="forecast4-content">
+        {fourDaysData[selectedDay].map((data, index) => (
+          <ForecastBox key={index} data={data} timezone={futureData.city.timezone} metric={metric} />
+        ))}
+      </div>
     </div>
   );
 }
