@@ -6,7 +6,7 @@ const Home = () => {
 
   const { BaseLayer, Overlay } = LayersControl;
   const baseMapUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-  const keyAPI = process.env.REACT_APP_KEY;
+  const keyAPI = import.meta.env.VITE_APP_KEY;
 
   return (
     <>

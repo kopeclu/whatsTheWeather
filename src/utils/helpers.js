@@ -47,7 +47,7 @@ export function convertToKnots(meterSpeed) {
 
 export async function getCoords(city) {
 
-  const keyAPI = process.env.REACT_APP_KEY;
+  const keyAPI = import.meta.env.VITE_APP_KEY;
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
 
   const result = await axios.get(locationURL);

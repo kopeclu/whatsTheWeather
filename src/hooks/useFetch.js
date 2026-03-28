@@ -8,7 +8,7 @@ const useFetch = (lon, lat) => {
   const [isPending, setisPending] = useState(true);
   const [isError, setIsError] = useState(false);
   const isInitialRender = useRef(true)
-  const keyAPI = process.env.REACT_APP_KEY;
+  const keyAPI = import.meta.env.VITE_APP_KEY;
 
   const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
 
