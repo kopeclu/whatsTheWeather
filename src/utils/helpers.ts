@@ -2,8 +2,8 @@ import axios from "axios";
 
 // Convert unix time to human readable
 
-export function convertTime(unixTime, timezone, format) {
-  let humanTime;
+export function convertTime(unixTime: number, timezone: number, format: string): string {
+  let humanTime = "";
   const date = new Date((unixTime+timezone) * 1000);
     
   // Get the components of the date
@@ -29,15 +29,15 @@ export function convertTime(unixTime, timezone, format) {
 
 // Get URL of given icon
 
-export function getUrl(givenIcon) {
+export function getUrl(givenIcon: string) {
   return `https://openweathermap.org/img/wn/${givenIcon}@2x.png`;
 }
 
-export function replaceSpaces(word) {
+export function replaceSpaces(word: string) {
   return word.replace(' ', '-');
 }
 
-export function convertToKnots(meterSpeed) {
+export function convertToKnots(meterSpeed: number) {
   const convesionCONST = 1.94384449;
   const knotSpeed = meterSpeed * convesionCONST;
   return knotSpeed.toFixed(2);
@@ -45,7 +45,7 @@ export function convertToKnots(meterSpeed) {
 
 // Get coordinates of given city
 
-export async function getCoords(city) {
+export async function getCoords(city: string) {
 
   const keyAPI = import.meta.env.VITE_APP_KEY;
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;

@@ -1,22 +1,28 @@
-import { convertTime, getUrl } from "../utils/helpers";
-import WeatherStat from "./WeatherStat";
+import { CurrentWeather } from "../types/index.ts";
+import { convertTime, getUrl } from "../utils/helpers.ts";
+import WeatherStat from "./WeatherStat.tsx";
 
-const ForecastCurrent = ({currentData, metric}) => {
+type ForecastCurrentProps = {
+  currentData: CurrentWeather,
+  metric: string
+}
+
+const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
   const statsToDisplay = ["temp", "rain", "wind", "clouds"]
 
   return (
     <div className="forecast-current">
       <input id="ch" type="checkbox" />
       <div className="cimg">
-        <img src={getUrl(currentData.data.weather[0].icon)} alt="weather icon" />
-        <h2>{currentData.data.weather[0].main}</h2>
+        <img src={getUrl(currentData.weather[0].icon)} alt="weather icon" />
+        <h2>{currentData.weather[0].main}</h2>
       </div>
       <div className="cweather-all-info">
         {statsToDisplay.map((el, index) => (
           <WeatherStat
             key={index}
             type={el}
-            data={currentData.data}
+            data={currentData}
             windMetric={metric}
             current={true}
           />
@@ -26,19 +32,19 @@ const ForecastCurrent = ({currentData, metric}) => {
       <div className="cweather-see-more">
         <div className="cweather-all-info">
           <div>
-            <span>Pressure: </span>{currentData.data.main.pressure} hPa
+            <span>Pressure: </span>{currentData.main.pressure} hPa
           </div>
           <div>
-            <span>Humidity: </span>{currentData.data.main.humidity} %
+            <span>Humidity: </span>{currentData.main.humidity} %
           </div>
           <div>
-            <span>Sunrise: </span>{convertTime(currentData.data.sys.sunrise, currentData.data.timezone, 'hours')}
+            <span>Sunrise: </span>{convertTime(currentData.sys.sunrise, currentData.timezone, 'hours')}
           </div>
           <div>
-            <span>Sunset: </span>{convertTime(currentData.data.sys.sunset, currentData.data.timezone, 'hours')}
+            <span>Sunset: </span>{convertTime(currentData.sys.sunset, currentData.timezone, 'hours')}
           </div>
           <div>
-            <span>Visibility: </span>{(Number(currentData.data.visibility)/1000).toFixed(1)} km
+            <span>Visibility: </span>{(Number(currentData.visibility)/1000).toFixed(1)} km
           </div>
         </div>
         <label id="see-less" htmlFor="ch" >See less</label>

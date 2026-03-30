@@ -1,7 +1,14 @@
-import { convertTime, getUrl } from "../utils/helpers";
-import WeatherStat from "./WeatherStat";
+import { ForecastItem } from "../types/index.ts";
+import { convertTime, getUrl } from "../utils/helpers.ts";
+import WeatherStat from "./WeatherStat.tsx";
 
-const ForecasBox = ({data, timezone, metric}) => {
+type ForecasBoxProps = {
+  data: ForecastItem,
+  timezone: number,
+  metric: string
+}
+
+const ForecasBox = ({data, timezone, metric}: ForecasBoxProps) => {
   const statsToDisplay = ["temp", "rain", "wind"]
 
   return (

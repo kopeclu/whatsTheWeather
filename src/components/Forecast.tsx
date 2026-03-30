@@ -1,16 +1,16 @@
-import ForecastCurrent from './ForecastCurrent';
-import Forecast24Hours from './Forecast24Hours';
-import Forecast4Days from './Forecast4Days';
-import useFetch from '../hooks/useFetch';
+import ForecastCurrent from './ForecastCurrent.tsx';
+import Forecast24Hours from './Forecast24Hours.tsx';
+import Forecast4Days from './Forecast4Days.tsx';
+import useFetch from '../hooks/useFetch.ts';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from './Header';
+import Header from './Header.tsx';
 import { useEffect, useState } from 'react';
 
 const Forecast = () => {
 
   const navigate = useNavigate();
 
-  const {lon, lat} = useParams();
+  const {lon, lat} = useParams<string>();
 
   const [trigger, setTrigger] = useState(false);
   const [ metric, setMetric ] = useState('m/s');
@@ -22,7 +22,7 @@ const Forecast = () => {
   }, [lon, lat])
 
   // eslint-disable-next-line
-  const {currentData, futureData, isPending, isError} = useFetch(trigger ? lon : null, trigger ? lat : null);
+  const {currentData, futureData, isError} = useFetch(trigger ? lon : null, trigger ? lat : null);
   
   if (isError){
     navigate('/404');
@@ -49,7 +49,7 @@ const Forecast = () => {
         <div className="forecast">
 
           <div className="forecast-city-name">
-            {currentData.data.name}
+            {currentData.name}
           </div>
           <ForecastCurrent currentData={currentData} metric={metric} />
 
@@ -61,7 +61,7 @@ const Forecast = () => {
           <div className="forecast-header">
             Next 4 days:
           </div>
-          <Forecast4Days futureData={futureData} timePresent={currentData.data.dt} timezone={currentData.data.timezone} metric={metric} />
+          <Forecast4Days futureData={futureData} timePresent={currentData.dt} timezone={currentData.timezone} metric={metric} />
         </div>
       }
     </>

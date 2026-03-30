@@ -1,8 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
-import { convertToKnots } from "../utils/helpers";
+import { convertToKnots } from "../utils/helpers.ts";
+import { CurrentWeather, ForecastItem } from "../types";
 
-const WeatherStat = ({type, data, windMetric, current}) => {
+type WeatherStatProps = {
+  type: string,
+  data: CurrentWeather | ForecastItem,
+  windMetric: string,
+  current: boolean
+}
+
+const WeatherStat = ({type, data, windMetric, current}: WeatherStatProps) => {
   if (!data) return null;
 
   let icon, value, unit;

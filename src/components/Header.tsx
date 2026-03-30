@@ -1,8 +1,8 @@
 import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { MouseEventHandler, SubmitEventHandler, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCoords, replaceSpaces } from "../utils/helpers";
+import { getCoords, replaceSpaces } from "../utils/helpers.ts";
 import { isMobile } from "react-device-detect";
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   const [searching, setSearching] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     try {
@@ -23,7 +23,7 @@ const Header = () => {
     }
   }
 
-  const getUserLocation = async (e) => {
+  const getUserLocation: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
 
     if (isMobile){
@@ -64,9 +64,6 @@ const Header = () => {
             break;
           case error.TIMEOUT:
             console.log("The request to get user location timed out.");
-            break;
-          case error.UNKNOWN_ERROR:
-            console.log("An unknown error occurred.");
             break;
           default:
             console.log('unknow problem');

@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
+import { CurrentWeather, ForecastData } from "../types";
 
-const useFetch = (lon, lat) => {
+const useFetch = (lon: string | undefined | null, lat: string | undefined | null) => {
 
-  const [futureData, setFutureData] = useState();
-  const [currentData, setCurrentData] = useState();
+  const [futureData, setFutureData] = useState<ForecastData | null>(null);
+  const [currentData, setCurrentData] = useState<CurrentWeather | null>(null);
   const [isPending, setisPending] = useState(true);
   const [isError, setIsError] = useState(false);
   const isInitialRender = useRef(true)
@@ -44,7 +45,7 @@ const useFetch = (lon, lat) => {
 
     axios.get(currentURL)
     .then((result) => {
-      setCurrentData(result);
+      setCurrentData(result.data);
       setIsError(false);
       setisPending(false);
     })
