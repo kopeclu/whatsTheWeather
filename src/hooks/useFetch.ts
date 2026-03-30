@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import { CurrentWeather, ForecastData } from "../types";
 import { getCurrentWeatherUrl, getForecastUrl } from "../constants";
@@ -7,56 +7,35 @@ const useFetch = (lon: string | undefined | null, lat: string | undefined | null
 
   const [futureData, setFutureData] = useState<ForecastData | null>(null);
   const [currentData, setCurrentData] = useState<CurrentWeather | null>(null);
-  const [isPending, setisPending] = useState(true);
+  const [isPending, setIsPending] = useState(true);
   const [isError, setIsError] = useState(false);
-  const isInitialRender = useRef(true)
-  const apiKey = import.meta.env.VITE_APP_KEY;
-
-  const forecastURL = getForecastUrl(lat, lon, apiKey);
 
   useEffect(() => {
-    if (isInitialRender.current) {
+    if (!lon || !lat) return;
+
+    const fetchWeatherData = async () => {
       setIsError(false);
-      setisPending(false);
-      return;
-    }
+      setIsPending(true)
 
-    axios.get(forecastURL)
-    .then((result) => {
-      setFutureData(result.data);
-      setIsError(false);
-      setisPending(false);
-    })
-    .catch((err) => {
-      console.log(err);
-      setIsError(true);
-      setisPending(false);
-    })
-  }, [forecastURL])
+      const apiKey = import.meta.env.VITE_APP_KEY;
 
-  const currentURL = getCurrentWeatherUrl(lat, lon, apiKey);
+      try {
+        const [currentRes, futureRes] = await Promise.all([
+          axios.get(getCurrentWeatherUrl(lat, lon, apiKey)),
+          axios.get(getForecastUrl(lat, lon, apiKey))])
 
-  useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      setIsError(false);
-      setisPending(false);
-      return;
-    }
+        setCurrentData(currentRes.data);
+        setFutureData(futureRes.data);
+      } catch (error) {
+        console.log("Error while fetching data:", error);
+        setIsError(true);
+      } finally {
+        setIsPending(false);
+      }
+    };
 
-    axios.get(currentURL)
-    .then((result) => {
-      setCurrentData(result.data);
-      setIsError(false);
-      setisPending(false);
-    })
-    .catch((err) => {
-      console.log(err);
-      setIsError(true);
-      setisPending(false);
-    })
-  }, [currentURL])
-
+    fetchWeatherData();
+  }, [lon, lat])
 
   return {currentData, futureData, isPending, isError};
 }
