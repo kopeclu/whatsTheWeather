@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { convertTime } from "../utils/helpers.ts";
-import ForecastBox from "./ForecasBox";
-import { ForecastData, ForecastItem } from "../types/index.ts";
+import ForecastBox from "./ForecastBox.tsx";
+import { ForecastData, ForecastItem, WindMetricType } from "../types/index.ts";
 
 type Forecast4DaysProps = {
   futureData: ForecastData,
   timePresent: number,
   timezone: number,
-  metric: string
+  metric: WindMetricType
 }
 
 const Forecast4Days = ({futureData, timePresent, timezone, metric}: Forecast4DaysProps) => {

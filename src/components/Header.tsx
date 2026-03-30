@@ -66,7 +66,7 @@ const Header = () => {
             console.log("The request to get user location timed out.");
             break;
           default:
-            console.log('unknow problem');
+            console.log('Unknown problem');
             break;
         }
         setSearching(false);

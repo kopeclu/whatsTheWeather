@@ -27,12 +27,6 @@ export function convertTime(unixTime: number, timezone: number, format: string):
   return humanTime;
 }
 
-// Get URL of given icon
-
-export function getUrl(givenIcon: string) {
-  return `https://openweathermap.org/img/wn/${givenIcon}@2x.png`;
-}
-
 export function replaceSpaces(word: string) {
   return word.replace(' ', '-');
 }

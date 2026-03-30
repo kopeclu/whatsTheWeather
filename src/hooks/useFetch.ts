@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
 import { CurrentWeather, ForecastData } from "../types";
+import { getCurrentWeatherUrl, getForecastUrl } from "../constants";
 
 const useFetch = (lon: string | undefined | null, lat: string | undefined | null) => {
 
@@ -9,9 +10,9 @@ const useFetch = (lon: string | undefined | null, lat: string | undefined | null
   const [isPending, setisPending] = useState(true);
   const [isError, setIsError] = useState(false);
   const isInitialRender = useRef(true)
-  const keyAPI = import.meta.env.VITE_APP_KEY;
+  const apiKey = import.meta.env.VITE_APP_KEY;
 
-  const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
+  const forecastURL = getForecastUrl(lat, lon, apiKey);
 
   useEffect(() => {
     if (isInitialRender.current) {
@@ -20,7 +21,7 @@ const useFetch = (lon: string | undefined | null, lat: string | undefined | null
       return;
     }
 
-    axios.get(weatherURL)
+    axios.get(forecastURL)
     .then((result) => {
       setFutureData(result.data);
       setIsError(false);
@@ -31,9 +32,9 @@ const useFetch = (lon: string | undefined | null, lat: string | undefined | null
       setIsError(true);
       setisPending(false);
     })
-  }, [weatherURL])
+  }, [forecastURL])
 
-  const currentURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${keyAPI}&units=metric`;
+  const currentURL = getCurrentWeatherUrl(lat, lon, apiKey);
 
   useEffect(() => {
     if (isInitialRender.current) {

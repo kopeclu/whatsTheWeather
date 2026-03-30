@@ -1,24 +1,23 @@
-import { CurrentWeather } from "../types/index.ts";
-import { convertTime, getUrl } from "../utils/helpers.ts";
+import { getIconUrl, STATS_TO_DISPLAY } from "../constants/index.ts";
+import { CurrentWeather, WindMetricType } from "../types/index.ts";
+import { convertTime } from "../utils/helpers.ts";
 import WeatherStat from "./WeatherStat.tsx";
 
 type ForecastCurrentProps = {
   currentData: CurrentWeather,
-  metric: string
+  metric: WindMetricType
 }
 
 const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
-  const statsToDisplay = ["temp", "rain", "wind", "clouds"]
-
   return (
     <div className="forecast-current">
       <input id="ch" type="checkbox" />
       <div className="cimg">
-        <img src={getUrl(currentData.weather[0].icon)} alt="weather icon" />
+        <img src={getIconUrl(currentData.weather[0].icon)} alt="weather icon" />
         <h2>{currentData.weather[0].main}</h2>
       </div>
       <div className="cweather-all-info">
-        {statsToDisplay.map((el, index) => (
+        {STATS_TO_DISPLAY.map((el, index) => (
           <WeatherStat
             key={index}
             type={el}

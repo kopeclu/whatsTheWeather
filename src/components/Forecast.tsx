@@ -5,6 +5,8 @@ import useFetch from '../hooks/useFetch.ts';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from './Header.tsx';
 import { useEffect, useState } from 'react';
+import { WindMetricType } from '../types/index.ts';
+import { WIND_METRIC } from '../constants/index.ts';
 
 const Forecast = () => {
 
@@ -13,7 +15,7 @@ const Forecast = () => {
   const {lon, lat} = useParams<string>();
 
   const [trigger, setTrigger] = useState(false);
-  const [ metric, setMetric ] = useState('m/s');
+  const [ metric, setMetric ] = useState<WindMetricType>(WIND_METRIC.METERS);
 
   useEffect(() => {
     if (lon !== undefined && lat !== undefined) {
@@ -39,9 +41,9 @@ const Forecast = () => {
       <div className="set-metrics">
         <p>Wind speed: </p>
         <form id="metric-form">
-          <input type="radio" id="ms" value="ms" name="metric" checked={metric === 'm/s'} onChange={() => setMetric('m/s')} />
+          <input type="radio" id="ms" value="ms" name="metric" checked={metric === WIND_METRIC.METERS} onChange={() => setMetric(WIND_METRIC.METERS)} />
           <label htmlFor="ms">m/s</label>
-          <input type="radio" id="kt" value="kt" name="metric" checked={metric === 'kt'} onChange={() => setMetric('kt')} />
+          <input type="radio" id="kt" value="kt" name="metric" checked={metric === WIND_METRIC.KNOTS} onChange={() => setMetric(WIND_METRIC.KNOTS)} />
           <label htmlFor="kt">kt</label>
         </form>
       </div>

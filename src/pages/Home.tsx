@@ -1,12 +1,12 @@
 import Header from "../components/Header"
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import Legend from "../utils/Legend";
+import { BASE_MAP_URL, getMapOverlayUrl } from "../constants";
 
 const Home = () => {
 
   const { BaseLayer, Overlay } = LayersControl;
-  const baseMapUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-  const keyAPI = import.meta.env.VITE_APP_KEY;
+  const apiKey = import.meta.env.VITE_APP_KEY;
 
   return (
     <>
@@ -27,10 +27,10 @@ const Home = () => {
         <MapContainer center={[50.1, 14.2]} zoom={5}>
           <LayersControl position="topright">
             <BaseLayer checked name="Base Map">
-              <TileLayer url={baseMapUrl} />
+              <TileLayer url={BASE_MAP_URL} />
             </BaseLayer>
             <Overlay checked name="Temperature">
-              <TileLayer url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${keyAPI}`} opacity={1} zIndex={1000} />
+              <TileLayer url={getMapOverlayUrl(apiKey)} opacity={1} zIndex={1000} />
             </Overlay>
           </LayersControl>
           <Legend />

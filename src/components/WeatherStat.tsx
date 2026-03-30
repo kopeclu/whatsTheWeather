@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud, faCloudRain, faTemperatureHigh, faWind } from "@fortawesome/free-solid-svg-icons";
 import { convertToKnots } from "../utils/helpers.ts";
-import { CurrentWeather, ForecastItem } from "../types";
+import { CurrentWeather, ForecastItem, WindMetricType } from "../types";
+import { WIND_METRIC } from "../constants/index.ts";
 
 type WeatherStatProps = {
   type: string,
   data: CurrentWeather | ForecastItem,
-  windMetric: string,
+  windMetric: WindMetricType,
   current: boolean
 }
 
@@ -30,7 +31,7 @@ const WeatherStat = ({type, data, windMetric, current}: WeatherStatProps) => {
 
     case "wind":
       icon = faWind;
-      value = windMetric === 'm/s' ? data.wind.speed : convertToKnots(data.wind.speed);
+      value = windMetric === WIND_METRIC.METERS ? data.wind.speed : convertToKnots(data.wind.speed);
       unit = windMetric;
       break;
 

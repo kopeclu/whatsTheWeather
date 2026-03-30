@@ -1,5 +1,7 @@
 // --- SHARED PIECES ---
 
+import { STATS_TO_DISPLAY, WIND_METRIC } from "../constants";
+
 export type WeatherCondition = {
   id: number;
   main: string;
@@ -95,3 +97,9 @@ export type ForecastData = {
     sunset: number;
   };
 };
+
+// --- OTHER ---
+
+export type WindMetricType = typeof WIND_METRIC[keyof typeof WIND_METRIC];
+
+export type StatType = typeof STATS_TO_DISPLAY[number];

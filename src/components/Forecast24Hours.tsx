@@ -1,9 +1,9 @@
-import { ForecastData } from "../types";
-import ForecasBox from "./ForecasBox";
+import { ForecastData, WindMetricType } from "../types";
+import ForecasBox from "./ForecastBox";
 
 type Forecast24HoursProps = {
   futureData: ForecastData,
-  metric: string
+  metric: WindMetricType
 }
 
 const Forecast24Hours = ({futureData, metric}: Forecast24HoursProps) => {
