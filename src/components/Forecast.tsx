@@ -24,8 +24,6 @@ const Forecast = () => {
     return <h2 className="loading">Loading...</h2>
   }
 
-  console.log("timezone: ", currentData.timezone);
-
   return (
     <>
       <Header />
