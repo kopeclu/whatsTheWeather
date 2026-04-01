@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ForecastItem } from "../types";
 
 // Convert unix time to human readable
 
@@ -32,8 +33,8 @@ export function replaceSpaces(word: string) {
 }
 
 export function convertToKnots(meterSpeed: number) {
-  const convesionCONST = 1.94384449;
-  const knotSpeed = meterSpeed * convesionCONST;
+  const conversionCONST = 1.94384449;
+  const knotSpeed = meterSpeed * conversionCONST;
   return knotSpeed.toFixed(2);
 }
 
@@ -50,4 +51,31 @@ export async function getCoords(city: string) {
   const lat = result.data[0].lat;
 
   return {lon, lat};
+}
+
+const chunkArray = (array: Array<ForecastItem>, chunkSize: number) => {
+  let result = Array<Array<ForecastItem>>();
+  for (let i = 0; i < array.length; i += chunkSize) {
+    result.push(array.slice(i, i + chunkSize));
+  }
+  return result;
+};
+
+// Returns names of next 4 days with forecast for these days
+export const getFourDaysData = (fullData: Array<ForecastItem>, timezone: number, timePresent: number) => {
+  const todayString = convertTime(timePresent, timezone, 'day');
+  const futureDataFlat = fullData.filter((item) => {
+    return convertTime(item.dt, timezone, 'day') !== todayString;
+  });
+
+  // Get next 4 days, each day has 8 chunks (each chunk has 3 hours - by default)
+  const daysData = chunkArray(futureDataFlat, 8).slice(0, 4);
+
+  const dayNames = daysData.map((dayChunk) => {
+    const dateString = convertTime(dayChunk[0].dt, timezone, 'date');
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { weekday: 'long' });
+  });
+
+  return {daysData, dayNames};
 }

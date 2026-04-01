@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CurrentWeather, ForecastData } from "../types";
 import { getCurrentWeatherUrl, getForecastUrl } from "../constants";
 
-const useFetch = (lon: string | undefined | null, lat: string | undefined | null) => {
+const useFetch = (lon: string | undefined, lat: string | undefined) => {
 
   const [futureData, setFutureData] = useState<ForecastData | null>(null);
   const [currentData, setCurrentData] = useState<CurrentWeather | null>(null);

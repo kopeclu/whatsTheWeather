@@ -23,63 +23,30 @@ const Header = () => {
     }
   }
 
-  const getUserLocation: MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const getUserLocation: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-
-    if (isMobile){
-      setSearching(true);
+    
+    if (isMobile)
+      // This feature is not working for android - known problem, no solution found so far
       alert('This feature is not 100% accurate and may not work on mobile devices.');
 
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
-        setSearching(false);
-        navigate(`/city/${lon}/${lat}`);
-      }, (error) => {
-        console.log(error);
-        setSearching(false);
-      }, {
-        enableHighAccuracy: true,
-        maximumAge: 100,
-        timeout: 10000
-      })
-      
-    } else {
-      setSearching(true);
-      
-      const watchID = navigator.geolocation.watchPosition((position) => {
-        const lon = position.coords.longitude;
-        const lat = position.coords.latitude;
-        setSearching(false);
-        navigate(`/city/${lon}/${lat}`);
-      },
-      (error) => {
-        console.error(error);
-        switch(error.code) {
-          case error.PERMISSION_DENIED:
-            console.log("User denied the request for Geolocation.");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            console.log("Location information is unavailable.");
-            break;
-          case error.TIMEOUT:
-            console.log("The request to get user location timed out.");
-            break;
-          default:
-            console.log('Unknown problem');
-            break;
-        }
-        setSearching(false);
-      }, {
-        enableHighAccuracy: true,
-        maximumAge: 100,
-        timeout: 10000
-      })
+    setSearching(true);
 
-      setTimeout( () => {
-        navigator.geolocation.clearWatch(watchID)
-      }, 10000);
-    }
+    const watchID = navigator.geolocation.watchPosition((position) => {
+      navigator.geolocation.clearWatch(watchID);
+      const lon = position.coords.longitude;
+      const lat = position.coords.latitude;
+      setSearching(false);
+      navigate(`/city/${lon}/${lat}`);
+    }, (error) => {
+      navigator.geolocation.clearWatch(watchID);
+      console.log(error);
+      setSearching(false);
+    }, {
+      enableHighAccuracy: true,
+      maximumAge: 0,
+      timeout: 10000
+    })
   }
 
   return (

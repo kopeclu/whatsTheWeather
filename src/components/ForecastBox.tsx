@@ -10,14 +10,18 @@ type ForecasBoxProps = {
 }
 
 const ForecasBox = ({data, timezone, metric}: ForecasBoxProps) => {
+  const iconURL = getIconUrl(data.weather[0].icon);
+  const timestampHours = convertTime(data.dt, timezone, 'hours');
+  const weatherStatus = data.weather[0].main;
+
   return (
     <div className="forecast-box">
       <h5 className="forecast-box-hours">
-        {convertTime(data.dt, timezone, 'hours')}
+        {timestampHours}
       </h5>
-      <img src={getIconUrl(data.weather[0].icon)} alt="icon" />
+      <img src={iconURL} alt="icon" />
       <h5 className="forecast-box-status">
-        {data.weather[0].main}
+        {weatherStatus}
       </h5>
       <div className="forecast-box-info">
         {STATS_TO_DISPLAY.map((el, index) => (

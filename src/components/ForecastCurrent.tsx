@@ -9,11 +9,13 @@ type ForecastCurrentProps = {
 }
 
 const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
+  const iconURL = getIconUrl(currentData.weather[0].icon);
+
   return (
     <div className="forecast-current">
       <input id="ch" type="checkbox" />
       <div className="cimg">
-        <img src={getIconUrl(currentData.weather[0].icon)} alt="weather icon" />
+        <img src={iconURL} alt="weather icon" />
         <h2>{currentData.weather[0].main}</h2>
       </div>
       <div className="cweather-all-info">
