@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEventHandler, SubmitEventHandler, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCoords, replaceSpaces } from "../utils/helpers.ts";
-import { isMobile } from "react-device-detect";
 
 const Header = () => {
   const [city, setCity] = useState('');
@@ -25,10 +24,6 @@ const Header = () => {
 
   const getUserLocation: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    
-    if (isMobile)
-      // This feature is not working for android - known problem, no solution found so far
-      alert('This feature is not 100% accurate and may not work on mobile devices.');
 
     setSearching(true);
 
