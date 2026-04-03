@@ -27,7 +27,7 @@ const useFetch = (lon: string | undefined, lat: string | undefined) => {
         setCurrentData(currentRes.data);
         setFutureData(futureRes.data);
       } catch (error) {
-        console.log("Error while fetching data:", error);
+        console.log("Fetching data has failed.");
         setIsError(true);
       } finally {
         setIsPending(false);

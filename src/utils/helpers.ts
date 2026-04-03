@@ -45,12 +45,16 @@ export async function getCoords(city: string) {
   const keyAPI = import.meta.env.VITE_APP_KEY;
   const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
 
-  const result = await axios.get(locationURL);
+  try {
+    const result = await axios.get(locationURL);
+    const lon = result.data[0].lon;
+    const lat = result.data[0].lat;
   
-  const lon = result.data[0].lon;
-  const lat = result.data[0].lat;
-
-  return {lon, lat};
+    return {lon, lat};
+  } catch (error) {
+    throw new Error("Getting coordinates has failed.")
+  }
+  
 }
 
 const chunkArray = (array: Array<ForecastItem>, chunkSize: number) => {

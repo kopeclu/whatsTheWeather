@@ -17,7 +17,7 @@ const Header = () => {
       navigate(`/city/${lon}/${lat}`);
       setCity('');
     } catch (err) {
-      console.log(err);
+      console.log("Getting coordinations has failed.");
       navigate('/404');
     }
   }
@@ -33,9 +33,9 @@ const Header = () => {
       const lat = position.coords.latitude;
       setSearching(false);
       navigate(`/city/${lon}/${lat}`);
-    }, (error) => {
+    }, () => {
       navigator.geolocation.clearWatch(watchID);
-      console.log(error);
+      console.log("navigator.geolocation.watchPosition has failed.");
       setSearching(false);
     }, {
       enableHighAccuracy: true,
