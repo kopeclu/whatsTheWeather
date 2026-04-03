@@ -1,5 +1,4 @@
 import './assets/styles/App.css';
-import './assets/styles/Header.css';
 import './assets/styles/Forecast.css';
 import Forecast from './components/Forecast';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
