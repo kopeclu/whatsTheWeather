@@ -1,9 +1,9 @@
-import ForecastCurrent from './ForecastCurrent.tsx';
-import Forecast24Hours from './Forecast24Hours.tsx';
-import Forecast4Days from './Forecast4Days.tsx';
+import ForecastCurrent from '../components/ForecastCurrent.tsx';
+import Forecast24Hours from '../components/Forecast24Hours.tsx';
+import Forecast4Days from '../components/Forecast4Days.tsx';
 import useFetch from '../hooks/useFetch.ts';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from './Header.tsx';
+import Header from '../components/Header.tsx';
 import { useEffect, useState } from 'react';
 import { WindMetricType } from '../types/index.ts';
 import { WIND_METRIC } from '../constants/index.ts';
