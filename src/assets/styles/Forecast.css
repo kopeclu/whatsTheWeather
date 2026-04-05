@@ -1,15 +1,4 @@
-.forecast {
-  display: flex;
-  flex-direction: column;
-}
 
-.forecast-city-name {
-  width: fit-content;
-  font-size: 35px;
-  font-weight: 700;
-  margin-left: 30px;
-  padding: 20px;
-}
 
 /* Forecast headers */
 

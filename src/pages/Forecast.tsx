@@ -19,14 +19,11 @@ const Forecast = () => {
     if (isError)
       navigate('/404');
   }, [isError, navigate])
-    
-  if (!currentData || !futureData || isPending){
-    return <h2 className="loading">Loading...</h2>
-  }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-[#DCF0FF]">
       <Header />
+      {/* into separate component */}
       <div className="set-metrics">
         <p>Wind speed: </p>
         <form id="metric-form">
@@ -50,27 +47,26 @@ const Forecast = () => {
           <label htmlFor="kt">kt</label>
         </form>
       </div>
-      {currentData && futureData &&
-        <div className="forecast">
-          <div className="forecast-city-name">
-            {currentData.name}
-          </div>
+      <main className="grow w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 flex flex-col items-center">
+
+      {(isPending || !currentData || !futureData) ? (
+        <div className="grow flex items-center justify-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-black-600 animate-pulse">
+            Loading Forecast...
+          </h2>
+        </div>
+      ) : (
+        <div className="w-full flex flex-col gap-8 md:gap-12">
           <ForecastCurrent
             currentData={currentData}
             metric={metric}
           />
 
-          <div className="forecast-header">
-            Next 24 hours:
-          </div>
           <Forecast24Hours
             futureData={futureData}
             metric={metric}
           />
 
-          <div className="forecast-header">
-            Next 4 days:
-          </div>
           <Forecast4Days
             futureData={futureData}
             timePresent={currentData.dt}
@@ -78,8 +74,10 @@ const Forecast = () => {
             metric={metric}
           />
         </div>
+        )
       }
-    </>
+      </main>
+    </div>
   );
 }
  
