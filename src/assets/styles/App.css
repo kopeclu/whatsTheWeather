@@ -31,29 +31,6 @@
   font-size: 20px;
 }
 
-/* Welcome message */
-
-.welcome-message {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  padding: 0 40px;
-}
-
-.welcome-message p {
-  background-color: rgba(255, 255, 255, 0.252);
-  width: fit-content;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.068);
-  max-width: 1000px;
-  font-size: 24px;
-}
-
-.welcome-message p span {
-  font-weight: 600;
-}
-
 /* Map section */
 
 .displayed-map {
@@ -71,30 +48,4 @@
 
 .legend div {
   padding: 3px;
-}
-
-@media screen and (max-width: 680px) {
-  .welcome-message p {
-    font-size: 18px;
-  }
-
-  .bottom-right div {
-    font-size: 11px;
-  }
-
-  .bottom-left div {
-    font-size: 13px;
-  }
-
-  .bottom-left {
-    padding: 30px 10px;
-    width: fit-content;
-  }
-}
-
-@media screen and (max-width: 460px) {
-  .welcome-message p {
-    font-size: 15px;
-  }
-
 }
