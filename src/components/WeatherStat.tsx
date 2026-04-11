@@ -50,16 +50,16 @@ const WeatherStat = ({type, data, windMetric, current}: WeatherStatProps) => {
   }
   
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:bg-white/60 transition-colors">
+    <div className="h-full flex flex-col items-center justify-center p-3 sm:p-4 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:bg-white/60 transition-colors">
       
-      <FontAwesomeIcon icon={icon} className="text-2xl md:text-3xl text-black-500 mb-2 drop-shadow-sm" />
+      <FontAwesomeIcon icon={icon} className="text-xl sm:text-2xl md:text-3xl mb-2 drop-shadow-sm" />
       
-      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+      <span className="text-[10px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1 truncate w-full text-center">
         {label}
       </span>
       
-      <div className="text-xl md:text-2xl font-bold text-gray-800">
-        {value} <span className="text-base font-semibold text-gray-600">{unit}</span>
+      <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 flex items-baseline gap-1 whitespace-nowrap">
+        {value} <span className="text-sm sm:text-base font-semibold text-gray-600">{unit}</span>
       </div>
       
     </div>
