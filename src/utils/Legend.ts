@@ -6,11 +6,11 @@ const Legend = () => {
   const map = useMap();
 
   useEffect(() => {
-    const legend = L.control({ position: "bottomleft" });
+    const legend = new L.Control({ position: "bottomleft" });
 
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
-      const grades = [30, 25, 20, 10, "0", -10, -20, -30, -40, -45, -55, -65];
+      const grades = [30, 25, 20, 10, 0, -10, -20, -30, -40, -45, -55, -65];
       const colors = [
         "rgba(252, 128, 20, 0.3)",
         "rgba(255, 194, 40, 0.3)",

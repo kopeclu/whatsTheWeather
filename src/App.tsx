@@ -1,23 +1,21 @@
 import './assets/styles/App.css';
-import './assets/styles/Header.css';
-import './assets/styles/Forecast.css';
-import Forecast from './components/Forecast';
+import Forecast from './pages/Forecast';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Error404 from './pages/Error404';
-import BottomBar from './components/BottomBar';
 import 'leaflet/dist/leaflet.css';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="city/:lon/:lat" element={<Forecast />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-        <BottomBar />
+        <Footer />
       </div>
     </Router>
   );
