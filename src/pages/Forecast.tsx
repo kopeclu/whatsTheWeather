@@ -7,6 +7,7 @@ import Header from '../components/Header.tsx';
 import { useEffect, useState } from 'react';
 import { WindMetricType } from '../types/index.ts';
 import { WIND_METRIC } from '../constants/index.ts';
+import UnitToggle from '../components/UnitToggle.tsx';
 
 const Forecast = () => {
   const navigate = useNavigate();
@@ -23,30 +24,7 @@ const Forecast = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#DCF0FF]">
       <Header />
-      {/* into separate component */}
-      <div className="set-metrics">
-        <p>Wind speed: </p>
-        <form id="metric-form">
-          <input
-            type="radio"
-            id="ms"
-            value="ms"
-            name="metric"
-            checked={metric === WIND_METRIC.METERS}
-            onChange={() => setMetric(WIND_METRIC.METERS)}
-          />
-          <label htmlFor="ms">m/s</label>
-          <input
-            type="radio"
-            id="kt"
-            value="kt"
-            name="metric"
-            checked={metric === WIND_METRIC.KNOTS}
-            onChange={() => setMetric(WIND_METRIC.KNOTS)}
-          />
-          <label htmlFor="kt">kt</label>
-        </form>
-      </div>
+      <UnitToggle metric={metric} setMetric={setMetric} />
       <main className="grow w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 flex flex-col items-center">
 
       {(isPending || !currentData || !futureData) ? (
