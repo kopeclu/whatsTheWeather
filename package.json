@@ -1,6 +1,7 @@
 {
   "name": "weather-app",
   "version": "2.0.1",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -30,6 +31,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "typescript-eslint": "^8.59.3",
     "vite": "^8.0.3"
   }
 }
