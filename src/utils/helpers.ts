@@ -52,13 +52,13 @@ export async function getCoords(city: string) {
   
     return {lon, lat};
   } catch (error) {
-    throw new Error("Getting coordinates has failed.")
+    throw new Error("Getting coordinates has failed.", { cause: error })
   }
   
 }
 
 const chunkArray = (array: Array<ForecastItem>, chunkSize: number) => {
-  let result = Array<Array<ForecastItem>>();
+  const result = Array<Array<ForecastItem>>();
   for (let i = 0; i < array.length; i += chunkSize) {
     result.push(array.slice(i, i + chunkSize));
   }

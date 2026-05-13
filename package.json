@@ -1,55 +1,37 @@
 {
-  "name": "tmpapp",
-  "version": "0.1.0",
+  "name": "weather-app",
+  "version": "2.0.1",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@fortawesome/react-fontawesome": "^3.3.1",
     "axios": "^1.7.2",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
-    "react-native-geolocation-service": "^5.3.1",
-    "react-router-dom": "^6.24.1",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.24.1"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.2",
     "@types/leaflet": "^1.9.21",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.0.1",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "typescript-eslint": "^8.59.3",
     "vite": "^8.0.3"
   }
 }
