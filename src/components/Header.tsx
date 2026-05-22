@@ -17,7 +17,7 @@ const Header = () => {
       navigate(`/city/${lon}/${lat}`);
       setCity('');
     } catch (err) {
-      console.log("Getting coordinations has failed.", err);
+      console.error("Getting coordinations has failed.", err);
       navigate('/404');
     }
   }
