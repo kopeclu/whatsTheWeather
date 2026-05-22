@@ -76,6 +76,7 @@ const Header = () => {
             value={city}
             onChange={(e) => {setCity(e.target.value)}}
             className="bg-transparent border-none outline-none text-gray-900 placeholder-gray-700 px-4 py-3 sm:px-6 sm:py-4 text-lg sm:text-xl md:text-2xl w-37.5 sm:w-50 md:w-72"
+            required
           />
           <button
             onClick={getUserLocation}
