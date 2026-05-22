@@ -25,3 +25,13 @@ export const WIND_METRIC = {
 
 export const STATS_TO_DISPLAY = ["temp", "rain", "wind", "clouds"] as const;
 
+export const HOME_INFO_CARDS = [
+  {
+    header: "Smart Search",
+    text: "If you search for a very small town, we'll automatically display the weather for the closest available weather station to guarantee accurate data."
+  }, {
+    header: "Free API Limits",
+    text: "We use a free weather data provider. If a search doesn't load immediately, we may have hit our requests-per-minute limit. Just wait a few seconds and try again!"
+  }
+] as const;
+

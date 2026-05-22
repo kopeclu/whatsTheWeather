@@ -1,7 +1,7 @@
 import Header from "../components/Header"
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import Legend from "../utils/Legend";
-import { BASE_MAP_URL, getMapOverlayUrl } from "../constants";
+import { BASE_MAP_URL, getMapOverlayUrl, HOME_INFO_CARDS } from "../constants";
 
 const Home = () => {
 
@@ -13,32 +13,25 @@ const Home = () => {
       <Header />
       
       <main className="grow w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 flex flex-col gap-10">
-        <section className="bg-white/60 backdrop-blur-md shadow-lg rounded-3xl p-6 md:p-10 border border-white/50">
+        <section className="p-6 md:p-10">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
-            My Weather App
+            Weather App
           </h1>
           <p className="text-gray-600 text-center max-w-2xl mx-auto mb-8 text-sm md:text-base">
             Accurate, real-time weather tracking. Before you start searching, here are two quick tips:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            
-            <div className="bg-white/60 rounded-2xl p-5 border border-white/40 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-lg text-black-600 mb-2">
-                Smart Search
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                If you search for a very small town, we'll automatically display the weather for the closest available weather station to guarantee accurate data.
-              </p>
-            </div>
 
-            <div className="bg-white/60 rounded-2xl p-5 border border-white/40 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-lg text-black-600 mb-2">
-                Free API Limits
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                We use a free weather data provider. If a search doesn't load immediately, we may have hit our requests-per-minute limit. Just wait a few seconds and try again!
-              </p>
-            </div>
+            {HOME_INFO_CARDS.map(card => (
+              <div key={card.header} className="bg-white/30 rounded-2xl p-5 border border-white/40 shadow-sm">
+                <h3 className="font-semibold text-lg text-black-600 mb-2">
+                  {card.header}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {card.text}
+                </p>
+              </div>
+            ))}
 
           </div>
         </section>
