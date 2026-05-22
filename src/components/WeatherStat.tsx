@@ -50,7 +50,7 @@ const WeatherStat = ({type, data, windMetric, current}: WeatherStatProps) => {
   }
   
   return (
-    <div className="h-full flex flex-col items-center justify-center p-3 sm:p-4 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:bg-white/60 transition-colors">
+    <div className="h-full flex flex-col items-center justify-center p-3 sm:p-4 ">
       
       <FontAwesomeIcon icon={icon} className="text-xl sm:text-2xl md:text-3xl mb-2 drop-shadow-sm" />
       

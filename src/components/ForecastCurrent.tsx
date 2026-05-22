@@ -53,8 +53,8 @@ const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
           </div>
         </div>
 
-        <div className="w-40 h-40 md:w-56 md:h-56 flex flex-col items-center justify-center bg-linear-to-br from-blue-100/50 to-white/50 rounded-full shadow-inner border border-white/60">
-          <img src={iconURL} alt={weather[0].main} className="w-24 md:w-32 object-contain drop-shadow-md" />
+        <div className="w-40 h-40 md:w-56 md:h-56 flex flex-col items-center justify-center bg-white/50 shadow-md rounded-full">
+          <img src={iconURL} alt={weather[0].main} className="w-24 md:w-32 object-contain" />
           <h2 className="text-lg font-semibold text-gray-700 -mt-2">{weather[0].main}</h2>
         </div>
       </div>
