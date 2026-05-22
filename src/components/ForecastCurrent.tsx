@@ -13,6 +13,30 @@ const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
   const temp = Math.round(main.temp);
   const iconURL = getIconUrl(weather[0].icon);
 
+  const additionalWeatherStats = [
+  {
+    label: "Pressure",
+    value: `${main.pressure} hPa`
+  },
+  {
+    label: "Humidity",
+    value: `${main.humidity}%`
+  },
+  {
+    label: "Sunrise",
+    value: convertTime(sys.sunrise, timezone, "hours")
+  },
+  {
+    label: "Sunset",
+    value: convertTime(sys.sunset, timezone, "hours")
+  },
+  {
+    label: "Visibility",
+    value: `${(Number(visibility) / 1000).toFixed(1)} km`,
+    className: "col-span-2 md:col-span-1"
+  }
+];
+
   return (
     <section className="w-full bg-white/60 backdrop-blur-md shadow-lg rounded-3xl p-6 md:p-10 border border-white/50 transition-all duration-300">
       
@@ -49,30 +73,16 @@ const ForecastCurrent = ({currentData, metric}: ForecastCurrentProps) => {
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 pt-6 border-t border-white/50 animate-fade-in-down">
         
-        <div className="flex flex-col items-center p-3 bg-white/40 rounded-xl shadow-sm">
-          <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Pressure</span>
-          <span className="text-lg font-bold text-gray-800">{main.pressure} hPa</span>
-        </div>
-        
-        <div className="flex flex-col items-center p-3 bg-white/40 rounded-xl shadow-sm">
-          <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Humidity</span>
-          <span className="text-lg font-bold text-gray-800">{main.humidity}%</span>
-        </div>
-        
-        <div className="flex flex-col items-center p-3 bg-white/40 rounded-xl shadow-sm">
-          <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Sunrise</span>
-          <span className="text-lg font-bold text-gray-800">{convertTime(sys.sunrise, timezone, 'hours')}</span>
-        </div>
-        
-        <div className="flex flex-col items-center p-3 bg-white/40 rounded-xl shadow-sm">
-          <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Sunset</span>
-          <span className="text-lg font-bold text-gray-800">{convertTime(sys.sunset, timezone, 'hours')}</span>
-        </div>
-        
-        <div className="flex flex-col items-center p-3 bg-white/40 rounded-xl shadow-sm col-span-2 md:col-span-1">
-          <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Visibility</span>
-          <span className="text-lg font-bold text-gray-800">{(Number(visibility) / 1000).toFixed(1)} km</span>
-        </div>
+        {additionalWeatherStats.map(stat => (
+          <div className={`flex flex-col items-center p-3 ${stat.className || ''}`}>
+            <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">
+              {stat.label}
+            </span>
+            <span className="text-lg font-bold text-gray-800">
+              {stat.value}
+            </span>
+          </div>
+        ))}
 
       </div>
 
