@@ -50,7 +50,7 @@ const WeatherStat = ({type, data, windMetric, current}: WeatherStatProps) => {
       
       <FontAwesomeIcon icon={icon} className="text-xl sm:text-2xl mb-2 drop-shadow-sm" />
       
-      <div className="text-lg sm:text-xl font-bold text-gray-800 flex items-baseline gap-1 whitespace-nowrap">
+      <div className={`text-lg sm:text-xl ${current ? "md:text-2xl" : ""} font-bold text-gray-800 flex items-baseline gap-1 whitespace-nowrap`}>
         {value} <span className="text-sm sm:text-base font-semibold text-gray-600">{unit}</span>
       </div>
       
