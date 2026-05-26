@@ -3,13 +3,15 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import Header from './Header';
-import { getCoords } from '../utils/helpers.ts';
+import { getCityFromCoords, getCoords } from '../utils/helpers.ts';
 
 vi.mock('../utils/helpers.ts', () => ({
   getCoords: vi.fn(),
+  getCityFromCoords: vi.fn()
 }));
 
 const mockedGetCoords = vi.mocked(getCoords);
+const mockedGetCityFromCoords = vi.mocked(getCityFromCoords);
 
 describe('Header Component', () => {
   
@@ -28,7 +30,7 @@ describe('Header Component', () => {
       <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
           <Route path="/" element={<Header />} />
-          <Route path="/city/:lon/:lat" element={<div data-testid="city-page">City Page</div>} />
+          <Route path="/forecast/:city" element={<div data-testid="city-page">City Page</div>} />
           <Route path="/404" element={<div data-testid="404-page">Error Page</div>} />
         </Routes>
       </MemoryRouter>
@@ -80,6 +82,8 @@ describe('Header Component', () => {
   it('uses geolocation and navigates to the user coordinates', async () => {
     const user = userEvent.setup();
     const watchMock = navigator.geolocation.watchPosition as Mock;
+
+    mockedGetCityFromCoords.mockResolvedValueOnce("New York");
     
     watchMock.mockImplementationOnce(
       (successCallback: PositionCallback) => {
@@ -98,6 +102,7 @@ describe('Header Component', () => {
     const locationButton = screen.getAllByRole('button')[1];
     await user.click(locationButton);
 
+    expect(mockedGetCityFromCoords).toHaveBeenCalledWith(40.71, -74.00);
     expect(await screen.findByTestId('city-page')).toBeInTheDocument();
   });
 
