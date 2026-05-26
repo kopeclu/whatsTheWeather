@@ -1,4 +1,4 @@
-import {describe, it, expect, vi} from 'vitest';
+import {describe, it, expect, vi, beforeEach} from 'vitest';
 import { getCoords, convertTime } from "./helpers";
 import axios from 'axios';
 
@@ -32,6 +32,9 @@ describe('convertTime function', () => {
 vi.mock('axios');
 describe('getCoords function', () => {
   const mockedAxiosGet = vi.mocked(axios.get);
+  beforeEach(() => {
+    vi.clearAllMocks(); 
+  });
   
   it('Returns longitude and latitude as numbers when the API call succeeds', async () => {
     const fakeApiResponse = {
@@ -44,7 +47,16 @@ describe('getCoords function', () => {
 
     const result = await getCoords('Prague');
 
-    expect(mockedAxiosGet).toHaveBeenCalledWith(expect.stringContaining('https://api.openweathermap.org/geo/1.0/direct?q=Prague'));
+    expect(mockedAxiosGet).toHaveBeenCalledWith(
+      'https://api.openweathermap.org/geo/1.0/direct',
+      {
+        params: {
+          q: 'Prague',
+          limit: 1,
+          appid: expect.anything()
+        }
+      }
+    );
     expect(result.lon).toEqual(expect.any(Number));
     expect(result.lat).toEqual(expect.any(Number));
   });
