@@ -2,7 +2,7 @@ import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEventHandler, SubmitEventHandler, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCoords } from "../utils/helpers.ts";
+import { getCityFromCoords, getCoords } from "../utils/helpers.ts";
 
 const Header = () => {
   const [city, setCity] = useState('');
@@ -34,21 +34,36 @@ const Header = () => {
 
     setSearching(true);
 
-    const watchID = navigator.geolocation.watchPosition((position) => {
-      navigator.geolocation.clearWatch(watchID);
-      const lon = position.coords.longitude;
-      const lat = position.coords.latitude;
-      setSearching(false);
-      navigate(`/city/${lon}/${lat}`);
-    }, () => {
-      navigator.geolocation.clearWatch(watchID);
-      console.log("navigator.geolocation.watchPosition has failed.");
-      setSearching(false);
-    }, {
-      enableHighAccuracy: true,
-      maximumAge: 0,
-      timeout: 10000
-    })
+    const watchID = navigator.geolocation.watchPosition(
+      async (position) => {
+        navigator.geolocation.clearWatch(watchID);
+        const lon = position.coords.longitude;
+        const lat = position.coords.latitude;
+        setSearching(false);
+        const query = new URLSearchParams({
+          lon: String(lon),
+          lat: String(lat)
+        }).toString();
+
+        try {
+          const city = await getCityFromCoords(lat, lon);
+          const safeCityPath = encodeURIComponent(city);
+
+          navigate(`/forecast/${safeCityPath}?${query}`);  
+        } catch (error) {
+          console.log("Failed to reverse geocode user location", error);
+          navigate(`/forecast/Unknown-Location?${query}`);
+        }
+      }, () => {
+        navigator.geolocation.clearWatch(watchID);
+        console.log("navigator.geolocation.watchPosition has failed.");
+        setSearching(false);
+      }, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000
+      }
+    )
   }
 
   return (

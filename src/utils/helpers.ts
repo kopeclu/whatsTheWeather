@@ -63,6 +63,26 @@ export async function getCoords(city: string) {
   
 }
 
+export async function getCityFromCoords(lat: number, lon: number) {
+  const keyAPI = import.meta.env.VITE_APP_KEY;
+  const baseURL = 'https://api.openweathermap.org/geo/1.0/reverse';
+
+  try {
+    const result = await axios.get(baseURL, {
+      params: { lat, lon, limit: 1, appid: keyAPI }
+    });
+
+    if (result.data.length === 0) {
+      return "Current Location"; 
+    }
+
+    return result.data[0].name;
+  } catch (error) {
+    console.error("Reverse geocoding failed", error);
+    return "Current Location";
+  }
+}
+
 const chunkArray = (array: Array<ForecastItem>, chunkSize: number) => {
   const result = Array<Array<ForecastItem>>();
   for (let i = 0; i < array.length; i += chunkSize) {
