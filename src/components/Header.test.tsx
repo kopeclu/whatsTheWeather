@@ -7,7 +7,6 @@ import { getCoords } from '../utils/helpers.ts';
 
 vi.mock('../utils/helpers.ts', () => ({
   getCoords: vi.fn(),
-  replaceSpaces: (str: string) => str.trim(), 
 }));
 
 const mockedGetCoords = vi.mocked(getCoords);

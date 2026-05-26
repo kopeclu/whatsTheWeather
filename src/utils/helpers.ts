@@ -28,10 +28,6 @@ export function convertTime(unixTime: number, timezone: number, format: string):
   return humanTime;
 }
 
-export function replaceSpaces(word: string) {
-  return word.replace(' ', '-');
-}
-
 export function convertToKnots(meterSpeed: number) {
   const conversionCONST = 1.94384449;
   const knotSpeed = meterSpeed * conversionCONST;
@@ -43,12 +39,22 @@ export function convertToKnots(meterSpeed: number) {
 export async function getCoords(city: string) {
 
   const keyAPI = import.meta.env.VITE_APP_KEY;
-  const locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${keyAPI}`;
+  const locationURL = 'https://api.openweathermap.org/geo/1.0/direct';
 
   try {
-    const result = await axios.get(locationURL);
-    const lon = result.data[0].lon;
-    const lat = result.data[0].lat;
+    const result = await axios.get(locationURL, {
+      params: {
+        q: city,
+        limit: 1,
+        appid: keyAPI
+      }
+    });
+
+    if (result.data.length === 0) {
+      throw new Error("CITY_NOT_FOUND");
+    }
+
+    const {lon, lat} = result.data[0];
   
     return {lon, lat};
   } catch (error) {

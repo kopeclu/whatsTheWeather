@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="city/:lon/:lat" element={<Forecast />} />
+          <Route path="forecast/:city" element={<Forecast />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         <Footer />

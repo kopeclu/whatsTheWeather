@@ -2,7 +2,7 @@ import { faHouse, faLocationCrosshairs, faMagnifyingGlass } from "@fortawesome/f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEventHandler, SubmitEventHandler, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCoords, replaceSpaces } from "../utils/helpers.ts";
+import { getCoords } from "../utils/helpers.ts";
 
 const Header = () => {
   const [city, setCity] = useState('');
@@ -13,8 +13,15 @@ const Header = () => {
     e.preventDefault();
 
     try {
-      const {lon, lat} = await getCoords(replaceSpaces(city));
-      navigate(`/city/${lon}/${lat}`);
+      const {lon, lat} = await getCoords(city);
+      const safeCityPath = encodeURIComponent(city);
+
+      const query = new URLSearchParams({
+        lon: String(lon),
+        lat: String(lat)
+      }).toString();
+
+      navigate(`/forecast/${safeCityPath}?${query}`);
       setCity('');
     } catch (err) {
       console.error("Getting coordinations has failed.", err);

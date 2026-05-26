@@ -2,7 +2,7 @@ import ForecastCurrent from '../components/ForecastCurrent.tsx';
 import Forecast24Hours from '../components/Forecast24Hours.tsx';
 import Forecast4Days from '../components/Forecast4Days.tsx';
 import useFetch from '../hooks/useFetch.ts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header.tsx';
 import { useEffect, useState } from 'react';
 import { WindMetricType } from '../types/index.ts';
@@ -11,10 +11,12 @@ import UnitToggle from '../components/UnitToggle.tsx';
 
 const Forecast = () => {
   const navigate = useNavigate();
-  const {lon, lat} = useParams<string>();
+  const [searchParams] = useSearchParams();
+  const lon = searchParams.get('lon');
+  const lat = searchParams.get('lat');
   const [ metric, setMetric ] = useState<WindMetricType>(WIND_METRIC.METERS);
 
-  const {currentData, futureData, isPending, isError} = useFetch(lon, lat);
+  const {currentData, futureData, isPending, isError} = useFetch(lon!, lat!);
   
   useEffect(() => {
     if (isError)
