@@ -8,7 +8,7 @@ export default defineConfig({
     tailwindcss()
   ],
   server: {
-    port: 3000, // Keeps the same port you are used to with CRA
+    port: 5173,
   },
   test: {
     environment: 'jsdom',

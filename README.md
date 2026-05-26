@@ -51,7 +51,6 @@ This is a live weather dashboard featuring a 4-day forecast. Users can search fo
 
 ## Future Improvements
 - **Autosuggest:** Implement search autocomplete to improve user experience.
-- **Refactor Routing:** Refactor the URL structure so it shows a readable city name instead of raw latitude/longitude coordinates.
 - **Favorites:** Add local storage support or user accounts to save favorite locations.
 
 <br>
